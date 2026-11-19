@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Page</title>
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #f4a85a;
+    }
+
+    :root {
+      --ratio: 1.78;
+      --sh: max(100dvh, calc(100vw / var(--ratio)));
+      --sw: calc(var(--sh) * var(--ratio));
+      --sx: calc((100vw - var(--sw)) / 2);
+    }
+
+    @media (orientation: portrait) {
+      :root { --sx: 0px; }
+    }
+
+    .bg {
+      position: fixed;
+      bottom: 0;
+      left: var(--sx);
+      width: var(--sw);
+      height: var(--sh);
+      z-index: 0;
+    }
+
+    .rider {
+      --cycle: 0.5s;
+      --ride-speed: 5.8s;
+      --rw: min(calc(var(--sw) * 0.32), 95vw);
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      bottom: calc(var(--sh) * 0.03);
+      width: var(--rw);
+      aspect-ratio: 1 / 1;
+      animation: rideLeft var(--ride-speed) linear 1 forwards;
+    }
+
+    @media (orientation: portrait) {
+      .rider { --ride-speed: 4s; }
+    }
+
+    .rider img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      animation: showFrame var(--cycle) steps(1) infinite;
+    }
+
+    .rider img:nth-child(1) { animation-delay: 0s; }
+    .rider img:nth-child(2) { animation-delay: calc(var(--cycle) * -0.8); }
+    .rider img:nth-child(3) { animation-delay: calc(var(--cycle) * -0.6); }
+    .rider img:nth-child(4) { animation-delay: calc(var(--cycle) * -0.4); }
+    .rider img:nth-child(5) { animation-delay: calc(var(--cycle) * -0.2); }
+
+    @keyframes showFrame {
+      0%   { opacity: 1; }
+      20%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes rideLeft {
+      from { transform: translateX(100vw); }
+      to   { transform: translateX(-100%); }
+    }
+
+    /* the letter: hidden until the rider reaches the middle of the screen */
+    .letter {
+      --lw: min(calc(var(--sw) * 0.32), 95vw);   /* same size as the rider */
+      display: none;
+      position: fixed;
+      z-index: 2;
+      bottom: calc(var(--sh) * 0.03);            /* same height as the rider */
+      width: var(--lw);
+      aspect-ratio: 1 / 1;
+      transform: translateX(-50%);               /* centers it on the drop point */
+      pointer-events: none;                      /* not clickable while falling */
+      transition: scale 0.2s ease;
+    }
+
+    /* after the drop finishes, the letter can be clicked */
+    .letter.ready {
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    /* fade out when leaving the page */
+    body {
+      transition: opacity 0.5s ease;
+    }
+    body.leaving {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <img class="bg" src="../image/Bantayan Island Sunset Road BG.png" alt="">
+
+  <div class="rider">
+    <img src="../image/frame_02-removebg-preview.png" alt="">
+    <img src="../image/frame_03-removebg-preview.png" alt="">
+    <img src="../image/frame_04-removebg-preview.png" alt="">
+    <img src="../image/frame_05-removebg-preview.png" alt="">
+    <img src="../image/frame_06-removebg-preview.png" alt="Couple on a motorcycle">
+  </div>
+
+  <img class="letter" src="../image/Lframe1.png" alt="Letter">
+
+  <script>
+    // ---------- background ratio ----------
+    const bg = document.querySelector('.bg');
+    function setRatio() {
+      if (bg.naturalWidth) {
+        document.documentElement.style.setProperty('--ratio', bg.naturalWidth / bg.naturalHeight);
+      }
+    }
+    if (bg.complete) setRatio();
+    bg.addEventListener('load', setRatio);
+
+    // ---------- letter drop ----------
+    const OPEN_PAGE = 'Invitation.html';   // CHANGE THIS to the file the letter should open
+                                           // (same folder as Intro.html; use '../other-folder/file.html' for elsewhere)
+    const DROP_FPS = 6;         // speed of frames 1-13 (13 frames = about 2.2 seconds)
+    const BOB_MS = 450;         // how fast frames 14-15 swap
+    const START_SCALE = 0.3;    // how small the letter is when it starts falling (1 = full size)
+    const BOB_HEIGHT = 4;       // how far the letter floats up and down (% of its own height)
+    const BOB_SPEED = 1600;     // time for one full up and down, in ms
+
+    const rider = document.querySelector('.rider');
+    const letter = document.querySelector('.letter');
+
+    const dropFrames = Array.from({ length: 13 }, (_, i) => `../image/Lframe${i + 1}.png`);
+    const bobFrames = ['../image/Lframe14.png', '../image/Lframe15.png'];
+
+    // preload every frame so there's no flicker
+    [...dropFrames, ...bobFrames].forEach(src => { new Image().src = src; });
+
+    let timer = null;
+
+    // ---------- open the next page ----------
+    function openPage() {
+      document.body.classList.add('leaving');                          // fade out
+      setTimeout(() => { window.location.href = OPEN_PAGE; }, 500);    // then go
+    }
+
+    function makeClickable() {
+      letter.classList.add('ready');
+      letter.setAttribute('role', 'link');
+      letter.tabIndex = 0;                                             // reachable with the keyboard
+      letter.addEventListener('click', openPage);
+      letter.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') openPage();
+      });
+    }
+
+    function startBobbing() {
+      let b = 0;
+      letter.src = bobFrames[0];
+
+      // swap frames 14 and 15
+      timer = setInterval(() => {
+        b = (b + 1) % bobFrames.length;
+        letter.src = bobFrames[b];
+      }, BOB_MS);
+
+      // smooth float up and down
+      letter.animate(
+        [
+          { translate: '0 0' },
+          { translate: `0 -${BOB_HEIGHT}%` }
+        ],
+        {
+          duration: BOB_SPEED / 2,
+          direction: 'alternate',
+          iterations: Infinity,
+          easing: 'ease-in-out'
+        }
+      );
+
+      makeClickable();            // the drop is done, so the letter can be clicked
+    }
+
+    function playDrop(x) {
+      clearInterval(timer);
+      letter.style.left = x + 'px';
+      letter.style.display = 'block';
+      letter.src = dropFrames[0];
+
+      // grow from small to full size over the whole fall
+      const fallMs = dropFrames.length * (1000 / DROP_FPS);
+      letter.animate(
+        [
+          { transform: `translateX(-50%) scale(${START_SCALE})` },
+          { transform: 'translateX(-50%) scale(1)' }
+        ],
+        { duration: fallMs, easing: 'ease-in', fill: 'forwards' }
+      );
+
+      let i = 0;
+      timer = setInterval(() => {
+        i++;
+        if (i < dropFrames.length) {
+          letter.src = dropFrames[i];
+        } else {
+          clearInterval(timer);
+          startBobbing();       // drop finished, switch to bobbing
+        }
+      }, 1000 / DROP_FPS);
+    }
+
+    // watch the rider and drop the letter when it crosses the middle of the screen
+    let prevX = null;
+    let dropped = false;
+
+    function tick() {
+      const r = rider.getBoundingClientRect();
+      const x = r.left + r.width / 2;
+      const mid = window.innerWidth / 2;
+
+      if (prevX !== null && prevX > mid && x <= mid) {
+        dropped = true;
+        playDrop(x);
+      }
+      prevX = x;
+
+      if (!dropped) requestAnimationFrame(tick);   // stop checking after the drop
+    }
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>
