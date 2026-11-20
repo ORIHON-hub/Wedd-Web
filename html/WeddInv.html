@@ -1,499 +1,488 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Stefano &amp; Coleen · May 20, 2027</title>
 <meta name="description" content="You are invited to the wedding of Stefano and Coleen on May 20, 2027 at Santa Fe Beach Club, Bantayan Island.">
-<meta name="robots" content="noindex, nofollow">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Stefano &amp; Coleen · May 20, 2027">
-<meta property="og:description" content="A love as endless as the sea. We invite you to celebrate our wedding.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='72' font-size='70' text-anchor='middle'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Italianno&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <style>
+/* ---------- tokens ---------- */
 :root{
-  --paper:#efeae6; --ink:#3a3836; --soft:#78726d; --line:#b9b2a9;
-  --navy:#032a44; --navy-ink:#e9e5df; --mint:#d5e0dc; --peach:#ecdccf;
-  --script:"Mrs Saint Delafield",cursive;
+  --bg:#f8f4ec; --paper:#efe7d9; --ink:#2a2a2a; --soft:#74716b; --line:#ddd2c1;
+  --beige:#dccdb4; --beige-light:#e9dfce; --sand:#d8c2a8;
   --serif:"Cormorant Garamond",Georgia,serif;
-  --sans:"Josefin Sans",system-ui,sans-serif;
+  --script:"Italianno","Snell Roundhand",cursive;
+  --sans:"Jost",system-ui,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0; color:var(--ink); font-family:var(--sans); font-weight:300; line-height:1.7;
-  background:var(--paper) radial-gradient(rgba(60,50,40,.07) 1px,transparent 1.2px) 0 0/7px 7px;
-  animation:pageIn .8s ease both;
-}
-@keyframes pageIn{from{opacity:0}to{opacity:1}}
 
-/* ---------- section buttons (nav) ---------- */
-.nav{
-  position:fixed; top:0; left:0; right:0; z-index:20;
-  display:flex; gap:.5rem; justify-content:center; padding:.7rem .8rem;
-  background:rgba(239,234,230,.88); backdrop-filter:blur(8px);
-  border-bottom:1px solid rgba(120,114,109,.25);
-  overflow-x:auto; scrollbar-width:none;
-}
-.nav::-webkit-scrollbar{display:none}
-.nav button{
-  flex:none; font:inherit; font-size:.82rem; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--ink); background:transparent; border:1px solid var(--line); border-radius:999px;
-  padding:.45rem 1.1rem; cursor:pointer; transition:background .35s,color .35s,border-color .35s;
-}
-.nav button:hover{border-color:var(--ink)}
-.nav button.active{background:var(--ink); color:var(--paper); border-color:var(--ink)}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--navy); outline-offset:3px}
+/* ---------- base ---------- */
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font:300 1rem/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.1}
+h2{font-size:clamp(2.2rem,5vw,3.4rem);text-align:center;margin-bottom:1.2rem}
+h2 em{font-family:var(--script);font-style:normal;font-size:1.25em}
+p{color:var(--soft);max-width:34rem;margin-inline:auto;text-align:center}
+ul,ol{list-style:none;padding:0}
+section{padding:6rem 1.5rem}
+.wrap{max-width:60rem;margin:auto}
+.center{text-align:center;margin-top:2rem}
+.sub{font-size:1.5rem;text-align:center;margin:2.5rem 0 .3rem}
+.btn{display:inline-block;border:1px solid var(--ink);color:var(--ink);background:transparent;padding:.8rem 2.2rem;font:300 .8rem var(--sans);letter-spacing:.18em;text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+.btn:hover,.btn:focus-visible{background:var(--ink);color:var(--bg);outline:none}
+.btn.sm{padding:.5rem 1.6rem;font-size:.7rem}
+a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 
-/* ---------- sections ---------- */
-section{padding:6.5rem 1.4rem 5rem; scroll-margin-top:0}
-.wrap{max-width:860px; margin:0 auto}
-h2{font-family:var(--serif); font-weight:400; font-size:clamp(2rem,6vw,3.2rem); letter-spacing:.06em; text-transform:uppercase; text-align:center; margin:0}
-.rule{display:flex; align-items:center; gap:.8rem; max-width:420px; margin:.6rem auto 1.6rem; color:var(--soft)}
-.rule::before,.rule::after{content:""; flex:1; height:1px; background:var(--line)}
-p{margin:.4rem 0}
-.center{text-align:center}
-.lead{max-width:560px; margin:0 auto; text-align:center}
+/* ---------- placeholder photos (swap for real images) ---------- */
+.photo{position:relative;overflow:hidden;background:linear-gradient(#efe4d3 0 55%,#d8c3a5 55% 62%,#e9dcc8 62%)}
+.photo::after{content:"";position:absolute;left:38%;bottom:0;width:24%;height:62%;background:#4a4742;border-radius:40% 40% 0 0;opacity:.8}
 
-/* reveal: one soft fade as each section arrives */
-.reveal{opacity:0; transform:translateY(22px); transition:opacity .9s ease,transform .9s ease}
-.reveal.in{opacity:1; transform:none}
+/* ---------- nav ---------- */
+nav{position:fixed;inset:0 0 auto 0;z-index:5;display:flex;justify-content:flex-end;gap:2rem;padding:calc(1.2rem + env(safe-area-inset-top,0px)) 2rem 1rem;font-size:.72rem;letter-spacing:.2em}
+nav a{color:#fff;text-decoration:none;text-shadow:0 0 12px rgba(0,0,0,.3)}
+nav a:hover{opacity:.7}
+nav a[aria-current="page"]{border-bottom:1px solid currentColor}
+.inner nav{background:var(--bg);border-bottom:1px solid var(--line)}
+.inner nav a{color:var(--ink);text-shadow:none}
+.inner main{padding-top:4.2rem}
 
-/* ---------- home ---------- */
-#home{min-height:100svh; display:flex; align-items:center; padding-top:5rem}
-.mono{font-family:var(--serif); font-size:2.6rem; line-height:1; letter-spacing:.04em; text-align:center; margin-bottom:1rem}
-.names-script{font-family:var(--script); font-size:clamp(4.4rem,17vw,9rem); line-height:.95; text-align:center; margin:0}
-.names-script span{display:block}
-.names-script .plus{font-family:var(--sans); font-size:1.6rem; font-weight:600; margin:.3rem 0}
-.tag{font-style:italic; letter-spacing:.3em; text-align:center; margin-top:2.4rem; font-size:.95rem}
-.names-caps{text-align:center; font-weight:600; letter-spacing:.35em; font-size:clamp(1.1rem,4vw,1.6rem); margin:.2rem 0 2rem}
-.date{display:block; width:fit-content; margin:1.4rem auto 0; font-style:italic; font-size:clamp(1.3rem,5vw,1.9rem); letter-spacing:.3em; border-bottom:1px solid var(--ink); padding:0 .2em .2rem .5em}
-.venue{letter-spacing:.2em; text-transform:uppercase; font-size:.92rem; margin-top:1.4rem}
-.hero-btn{display:block; margin:2.4rem auto 0; font:inherit; letter-spacing:.2em; text-transform:uppercase; font-size:.85rem; padding:.8rem 2rem; color:var(--paper); background:var(--ink); border:0; border-radius:999px; cursor:pointer; transition:transform .3s,background .3s}
-.hero-btn:hover{transform:translateY(-2px); background:#1f1e1d}
+/* ---------- pages (one visible at a time) ---------- */
+.page{display:none}
+.page.on{display:block}
+
+/* ---------- photos ---------- */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem;max-width:60rem;margin:2rem auto 0}
+.gal figure{aspect-ratio:3/4;overflow:hidden;border-radius:4px}
+.gal img{width:100%;height:100%;object-fit:cover;cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:40;display:none;place-items:center;padding:1rem;background:rgba(20,16,12,.88);cursor:zoom-out}
+.lb.on{display:grid}
+.lb img{max-width:100%;max-height:100%}
+
+/* ---------- hero (video, rotated 180°, with a sand fallback) ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden;padding:0;background:linear-gradient(170deg,#c9ad90,#e2cfb7 45%,#cdb394)}
+.hero-video,.hero-foam{position:absolute;inset:0;width:100%;height:100%}
+.hero-video{object-fit:cover;transform:rotate(180deg)}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;display:none;background:rgba(90,70,50,.22)}
+.hero.has-video .hero-foam{display:none}
+.hero.has-video::after{display:block}
+.hero-text{position:relative;z-index:2;width:100%;padding:1rem 1.5rem}
+.hero p{max-width:none;color:inherit}
+.hero small{display:block;font-size:.7rem;letter-spacing:.3em;margin-bottom:1.4rem}
+.hero h1{font-size:clamp(3rem,10vw,7rem);letter-spacing:.04em;text-shadow:0 2px 30px rgba(70,48,28,.4)}
+.hero h1 span{font-family:var(--script);font-size:1.3em;margin:0 .1em;vertical-align:-.08em}
+.hero h1 b{font-weight:inherit}
+.hero-date{margin-top:1.6rem;font-size:.8rem;letter-spacing:.3em}
+.hero-tagline{margin-top:.8rem;font:italic 1.3rem var(--serif);letter-spacing:.12em}
+
+/* ---------- invitation ---------- */
+.invite{text-align:center}
+.env{position:relative;width:min(26rem,86%);aspect-ratio:4/3;margin:3rem auto 4rem}
+.env-back{position:absolute;inset:0;background:var(--beige);clip-path:polygon(0 12%,50% 0,100% 12%,100% 100%,0 100%)}
+.env-card{position:absolute;inset:-12% 9% 30%;background:#f4eee2;color:#3a372f;padding:1.6rem 1rem;box-shadow:0 8px 24px rgba(60,45,30,.14);font:1.2rem/1.4 var(--serif)}
+.env-card b{display:block;font-weight:400;letter-spacing:.08em;margin-bottom:.4rem}
+.env-front{position:absolute;inset:0;display:grid;place-items:end center;padding-bottom:1.2rem;background:linear-gradient(160deg,#e0cfb6,#c9b08f);clip-path:polygon(0 38%,50% 72%,100% 38%,100% 100%,0 100%);color:#fff;font:2.6rem var(--script)}
+.polaroid{position:absolute;right:-12%;bottom:-14%;width:42%;padding:.5rem .5rem 1.6rem;background:#fff;box-shadow:0 10px 26px rgba(0,0,0,.18);transform:rotate(5deg)}
+.polaroid .photo{aspect-ratio:3/4;filter:grayscale(1)}
+
+/* ---------- countdown ---------- */
+.count{padding:5rem 1rem;text-align:center;background:linear-gradient(rgba(239,230,216,.85),rgba(239,230,216,.85)),radial-gradient(ellipse at 30% 20%,#fff,transparent 60%),radial-gradient(ellipse at 80% 70%,#fff,transparent 55%) var(--beige-light)}
+.count{position:relative;overflow:hidden}
+.count-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.count::after{content:"";position:absolute;inset:0;z-index:1;display:none;background:rgba(90,70,50,.28)}
+.count.has-video::after{display:block}
+.count.has-video{color:#fff}
+.count.has-video .clock i{color:#fff}
+.count small,.clock{position:relative;z-index:2}
+.count small{font-size:.7rem;letter-spacing:.3em}
+.clock{display:flex;justify-content:center;gap:clamp(.6rem,3vw,2.2rem);margin-top:1rem;font:clamp(2.2rem,8vw,4.4rem) var(--serif)}
+.clock div{display:flex;flex-direction:column;align-items:center;min-width:3ch}
+.clock i{font:300 .6rem var(--sans);font-style:normal;letter-spacing:.2em;color:var(--soft)}
+
+/* ---------- story ---------- */
+.story{background:var(--paper)}
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.story h2{text-align:left}
+.story p{text-align:left;margin:0 0 1.2rem}
+.story .photo{aspect-ratio:4/5}
+
+/* ---------- RSVP call-to-action ---------- */
+.cta{position:relative;overflow:hidden;background:var(--beige-light)}
+.cta h2{max-width:36rem;margin-inline:auto}
+.cta .btn{position:relative;z-index:1}
+.pearl{position:absolute;right:-6rem;bottom:-7rem;width:22rem;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#ece4d3 45%,#bdb09a 100%);box-shadow:inset -20px -24px 50px rgba(120,100,70,.35);opacity:.9}
 
 /* ---------- details ---------- */
-.sub{font-family:var(--serif); font-size:1.7rem; letter-spacing:.12em; text-transform:uppercase; margin:2rem 0 .8rem}
-.palette{display:flex; flex-wrap:wrap; gap:1.2rem 1.4rem}
-.swatch{width:84px; text-align:center; font-size:.78rem; color:var(--soft); line-height:1.3}
-.swatch i{display:block; width:58px; height:58px; margin:0 auto .45rem; border-radius:50% 50% 42% 42%; border:1px solid rgba(58,56,54,.4); background:var(--c); box-shadow:inset 0 -10px 0 rgba(255,255,255,.18)}
-.note{font-style:italic; margin-top:1.4rem}
-.stay{list-style:none; padding:0; margin:1rem auto; max-width:360px}
-.stay li{padding:.3rem 0 .3rem 2rem; position:relative; font-size:1.05rem}
-.stay li::before{content:"✦"; position:absolute; left:.3rem; color:var(--soft)}
+.details-hd{height:14rem;display:grid;place-items:center;padding:0;background:linear-gradient(rgba(216,194,168,.55),rgba(216,194,168,.55)),radial-gradient(circle at 20% 40%,#fff,transparent 50%) var(--sand)}
+.details-hd h2{margin:0;color:#fff;letter-spacing:.12em}
+.venue-section{padding-top:0}
+.venue{display:grid;grid-template-columns:1fr 1.2fr;gap:3.5rem;align-items:center;padding-top:5rem}
+.venue .photo{aspect-ratio:4/3}
+.venue h3{font-size:2.2rem;margin-bottom:.4rem}
+.venue p{text-align:left;margin:0 0 .5rem}
 
-/* ---------- journey ---------- */
-#journey .steps{max-width:640px; margin:0 auto; position:relative}
-.step{display:grid; grid-template-columns:1fr 64px 1fr; align-items:center; gap:.8rem; padding:1.5rem 0; text-align:center}
-.step .ico{font-size:2.6rem; filter:grayscale(1) contrast(1.3)}
-.step:not(:last-child) .ico{position:relative}
-.step .time{color:var(--soft)}
-.step+.step{border-top:1px dashed var(--line)}
-.venue-box{margin-top:2rem; text-align:center; border-top:1px dotted var(--ink); padding-top:1.6rem}
-.venue-box h3{font-family:var(--serif); font-weight:400; font-size:2rem; letter-spacing:.1em; margin:0 0 .5rem}
-.closing{font-style:italic; text-align:center; margin-top:2.6rem}
-@media(max-width:560px){
-  .step{grid-template-columns:1fr; gap:.2rem}
+/* ---------- timelines (schedule + getting there) ---------- */
+.tl{position:relative;max-width:44rem;margin:3rem auto 0}
+.tl::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:1px solid var(--line)}
+.ev{position:relative;width:50%;padding:0 2.5rem 3rem;text-align:right}
+.ev::after{content:"";position:absolute;top:.6rem;right:-4px;width:8px;height:8px;border-radius:50%;background:var(--soft)}
+.ev:nth-child(even){margin-left:50%;text-align:left}
+.ev:nth-child(even)::after{right:auto;left:-4px}
+.ev time{font:1.2rem var(--serif);color:var(--soft)}
+.ev h3{font-size:1.5rem;letter-spacing:.14em;margin:.1rem 0 .4rem}
+.ev p{margin:0;font-size:.92rem}
+.ev:nth-child(odd) p{margin-left:auto;text-align:right}
+.ev:nth-child(even) p{margin-left:0;text-align:left}
+
+/* ---------- dress code ---------- */
+.dress{text-align:center;background:var(--paper)}
+.sw{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin-top:1.5rem}
+.sw div{width:5rem;font-size:.75rem;line-height:1.3;color:var(--soft)}
+.sw i{display:block;height:4rem;margin-bottom:.4rem;border:1px solid var(--line);border-radius:2px}
+
+/* ---------- travel ---------- */
+.travel{background:linear-gradient(var(--beige),var(--beige-light))}
+.panel{max-width:56rem;margin:auto;padding:4rem 2rem;background:var(--bg);text-align:center}
+.panel h2{font-size:clamp(1.8rem,4vw,2.6rem)}
+.lodging{margin:1.5rem 0;color:var(--soft)}
+
+/* ---------- FAQ ---------- */
+.faq{padding-bottom:3rem;background:var(--paper)}
+.faq-photo{position:relative;overflow:hidden;height:min(60vh,30rem);margin:-6rem -1.5rem 4rem;background:linear-gradient(#efe4d3 0 60%,#d6c0a0 60% 66%,#e8dcc8 66%)}
+.faq-photo::before,.faq-photo::after{content:"";position:absolute;bottom:0;width:11%;height:72%;border-radius:45% 45% 0 0}
+.faq-photo::before{left:36%;background:#f4efe6}
+.faq-photo::after{left:52%;background:#5b5851}
+.faq details{max-width:36rem;margin:auto;padding:1.2rem 0;border-bottom:1px solid var(--line)}
+.faq summary{display:flex;justify-content:space-between;list-style:none;cursor:pointer;font:1.15rem var(--serif);letter-spacing:.1em}
+.faq summary::after{content:"+";color:var(--soft)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:.6rem 0 0;text-align:left}
+
+/* ---------- RSVP form ---------- */
+.rsvp{background:linear-gradient(var(--beige-light),var(--beige))}
+.rsvp .wrap{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:56rem}
+.rsvp form,.done{padding:2rem;background:var(--bg)}
+.rsvp .photo{min-height:22rem}
+.rsvp .photo::after{left:30%;width:18%;height:58%}
+label{display:block;margin:1.1rem 0 .3rem;font-size:.8rem;color:var(--soft)}
+input,select{width:100%;padding:.7rem .8rem;border:1px solid var(--line);border-radius:0;background:var(--paper);color:var(--ink);font:300 .95rem var(--sans)}
+form .btn{width:100%;margin-top:1.6rem}
+.done{display:none;align-content:center;text-align:center}
+.contact{max-width:none;padding:0 1rem 2.5rem}
+.contact a{color:inherit}
+footer{padding:4rem 1rem;text-align:center;font:2.6rem var(--script);color:var(--soft)}
+footer .btn{display:block;margin:1.5rem auto 0}
+
+/* ---------- mobile ---------- */
+@media (max-width:760px){
+  nav{justify-content:center;gap:1.4rem;padding:calc(.9rem + env(safe-area-inset-top,0px)) 1rem .7rem}
+  .story .wrap,.venue,.rsvp .wrap{grid-template-columns:1fr}
+  .story h2{text-align:center}
+  .tl::before{left:6px}
+  .ev,.ev:nth-child(even){width:100%;margin-left:0;padding:0 0 2.5rem 2rem;text-align:left}
+  .ev::after,.ev:nth-child(even)::after{left:2px;right:auto}
+  .ev:nth-child(odd) p{margin-left:0;text-align:left}
+  .polaroid{right:-4%}
 }
-
-/* ---------- reminders ---------- */
-#reminders{background:linear-gradient(180deg,var(--mint),var(--paper) 55%,var(--peach))}
-.script-title{font-family:var(--script); font-size:clamp(3.6rem,13vw,6.4rem); line-height:1; text-align:center; margin:0 0 1.5rem}
-.rem{text-align:center; padding:1.4rem 0}
-.rem h2{font-size:clamp(1.7rem,5vw,2.4rem)}
-.rem+.rem{border-top:1px solid rgba(120,114,109,.3)}
-.rem p{max-width:620px; margin:.6rem auto 0}
-
-/* ---------- rsvp ---------- */
-#rsvp{padding:0}
-.card{background:var(--navy); color:var(--navy-ink); padding:6.5rem 1.4rem 5rem}
-.frame{max-width:860px; margin:0 auto; border:2px solid #b9b2a9; padding:2.4rem 1.6rem}
-.frame h2{text-align:left; color:#b9b2a9; font-size:clamp(3rem,11vw,5.2rem); letter-spacing:.04em}
-.deadline{font-weight:600; letter-spacing:.04em}
-form{max-width:480px; margin:1.8rem auto 0; display:grid; gap:1.2rem}
-label,legend{display:block; font-weight:600; letter-spacing:.06em; margin-bottom:.3rem}
-input[type=text],select{width:100%; font:inherit; color:var(--navy-ink); background:transparent; border:0; border-bottom:2px solid #b9b2a9; padding:.5rem .2rem; border-radius:0}
-select option{color:#222}
-fieldset{border:0; padding:0; margin:0}
-.opt{display:flex; align-items:center; gap:.8rem; font-weight:300; letter-spacing:.04em; margin:.5rem 0; cursor:pointer}
-.opt input{appearance:none; width:26px; height:26px; border:3px solid #e9e5df; border-radius:50%; margin:0; cursor:pointer; transition:background .25s}
-.opt input:checked{background:radial-gradient(#e9e5df 45%,transparent 50%)}
-.send{font:inherit; letter-spacing:.2em; text-transform:uppercase; font-size:.85rem; padding:.85rem 2rem; background:var(--navy-ink); color:var(--navy); border:0; border-radius:999px; cursor:pointer; justify-self:start; transition:transform .3s}
-.send:hover{transform:translateY(-2px)}
-.msg{min-height:1.6rem; font-style:italic}
-.contacts{margin-top:2rem; font-style:italic}
-.contacts p{margin:.2rem 0}
-footer{text-align:center; padding:2.4rem 1rem; font-family:var(--serif); font-size:1.8rem; background:var(--navy); color:#b9b2a9}
-
-/* ---------- countdown, timeline, map, gallery, music ---------- */
-.count{display:flex; justify-content:center; gap:1.1rem; margin-top:1.8rem; text-align:center}
-.count div{min-width:62px}
-.count b{display:block; font-family:var(--serif); font-weight:400; font-size:clamp(2rem,8vw,3rem); line-height:1}
-.count span{font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--soft)}
-.tl{list-style:none; padding:0; margin:1.6rem auto; max-width:520px; border-left:1px solid var(--line)}
-.tl li{padding:0 0 1.6rem 1.6rem; position:relative}
-.tl li::before{content:""; position:absolute; left:-5px; top:.6rem; width:9px; height:9px; border-radius:50%; background:var(--ink)}
-.tl b{display:block; font-family:var(--serif); font-size:1.45rem; font-weight:500}
-.maplink{display:block; width:fit-content; margin:1.4rem auto 0; letter-spacing:.2em; text-transform:uppercase; font-size:.82rem; padding:.75rem 1.8rem; color:var(--ink); border:1px solid var(--ink); border-radius:999px; text-decoration:none; transition:background .3s,color .3s}
-.maplink:hover{background:var(--ink); color:var(--paper)}
-.gal{display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:.8rem; margin-top:1.6rem}
-.gal figure{margin:0; aspect-ratio:3/4; border-radius:6px; overflow:hidden; background:linear-gradient(160deg,var(--mint),var(--peach)); display:grid; place-items:center; color:var(--soft); font-style:italic; font-size:.9rem}
-.gal img{width:100%; height:100%; object-fit:cover; cursor:zoom-in; transition:transform .6s}
-.gal img:hover{transform:scale(1.04)}
-.lb{position:fixed; inset:0; z-index:40; background:rgba(20,18,16,.88); display:none; place-items:center; padding:1rem; cursor:zoom-out}
-.lb.on{display:grid}
-.lb img{max-width:100%; max-height:100%; border-radius:4px}
-.music{position:fixed; right:1rem; bottom:1rem; z-index:30; width:48px; height:48px; border-radius:50%; border:1px solid var(--ink); background:var(--paper); color:var(--ink); font-size:1.3rem; cursor:pointer; transition:background .3s,color .3s}
-.music[aria-pressed=true]{background:var(--ink); color:var(--paper)}
-
-/* ---------- personal greeting, thank-you, calendar button, phone links ---------- */
-[hidden]{display:none!important}
-.greet{font-family:var(--serif); font-style:italic; font-size:clamp(1.5rem,5vw,2rem); text-align:center; margin-bottom:.6rem}
-button.maplink{font:inherit; font-size:.82rem; background:transparent; cursor:pointer; margin-top:.8rem}
-.thanks{max-width:480px; margin:1.8rem auto 0; text-align:center}
-.thanks h3{font-family:var(--serif); font-weight:400; font-size:2.4rem; margin:0 0 .4rem}
-.contacts a{color:inherit; text-underline-offset:3px}
-
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .reveal{opacity:1; transform:none; transition:none}
-  body{animation:none}
+/* ---------- hero on phones and portrait tablets: names stack, text wraps ---------- */
+@media (max-width:900px){
+  .hero h1{font-size:clamp(2.6rem,14vw,6rem)}
+  .hero h1 b,.hero h1 span{display:block}
+  .hero h1 span{margin:.05em 0 .1em;font-size:1.2em}
+  .hero small{letter-spacing:.2em;line-height:1.8}
+  .hero-date{letter-spacing:.16em;line-height:1.9}
+  .hero-tagline{font-size:1.15rem;letter-spacing:.08em}
 }
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 
-<nav class="nav" aria-label="Sections">
-  <button data-go="home" class="active">Home</button>
-  <button data-go="story">Our story</button>
-  <button data-go="details">Details</button>
-  <button data-go="schedule">Schedule</button>
-  <button data-go="journey">Getting there</button>
-  <button data-go="gallery">Gallery</button>
-  <button data-go="reminders">Reminders</button>
-  <button data-go="rsvp">RSVP</button>
+<nav aria-label="Sections">
+  <a href="#home">HOME</a>
+  
+  <a href="#details">DETAILS</a>
+  <a href="#photos">PHOTOS</a>
+  <a href="#rsvp">RSVP</a>
 </nav>
 
-<section id="home">
-  <div class="wrap reveal">
-    <div class="mono">S&amp;C</div>
-    <h1 class="names-script"><span>Stefano</span><span class="plus">+</span><span>Coleen</span></h1>
-    <p class="tag">A love as endless as the sea</p>
-    <p class="names-caps">STEFANO &amp; COLEEN</p>
-    <p class="greet" id="greet" hidden></p>
-    <p class="center"><em>we invite you to celebrate our wedding</em></p>
-    <span class="date">MAY 20, 2027</span>
-    <p class="center" style="letter-spacing:.2em;margin-top:.5rem">AT 4:30PM</p>
-    <p class="venue center">Santa Fe Beach Club,<br>Bantayan Island, Cebu</p>
-    <div class="count" id="count" aria-label="Countdown to the wedding">
-      <div><b id="cd-d">0</b><span>days</span></div>
-      <div><b id="cd-h">0</b><span>hours</span></div>
-      <div><b id="cd-m">0</b><span>mins</span></div>
-      <div><b id="cd-s">0</b><span>secs</span></div>
-    </div>
-    <button class="hero-btn" data-go="story">Read our story</button>
+<main>
+<div class="page" data-page="home">
+<header class="hero" id="top">
+  <!-- Video path is relative to this file (html/ folder). If it can't load, the sand fallback below stays visible. -->
+  <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="../video/Tittle%20Name%20BG.mp4" type="video/mp4">
+  </video>
+  <svg class="hero-foam" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><filter id="blur"><feGaussianBlur stdDeviation="6"/></filter></defs>
+    <g fill="#fffdf9" filter="url(#blur)">
+      <path d="M0 120C120 220 160 420 80 800H0Z" opacity=".95"/>
+      <path d="M300 0C380 140 330 300 420 460S300 700 360 800H200C120 600 260 480 190 320S260 120 200 0Z" opacity=".55"/>
+      <path d="M820 0C900 90 900 220 1000 320 1080 410 1100 560 1060 800H1200V0Z"/>
+      <path d="M1100 0C1020 160 1090 300 980 420" stroke="#fff" stroke-width="30" fill="none" opacity=".8"/>
+    </g>
+  </svg>
+  <div class="hero-text">
+    <small>WE INVITE YOU TO CELEBRATE OUR WEDDING</small>
+    <h1><b>STEFANO</b><span>&amp;</span><b>COLEEN</b></h1>
+    <p class="hero-date">20 MAY 2027 · 4:30 PM<br>SANTA FE BEACH CLUB, BANTAYAN ISLAND</p>
+    <p class="hero-tagline">A love as endless as the sea</p>
+  </div>
+</header>
+
+<section class="invite">
+  <h2>A new <em>chapter</em></h2>
+  <p>As we begin this beautiful journey together, we would be honored to have you by our side as we celebrate one of the most meaningful days of our lives.</p>
+  <div class="env">
+    <div class="env-back"></div>
+    <div class="env-card"><b>20 May 2027</b>Santa Fe Beach Club,<br>Bantayan Island, Cebu</div>
+    <div class="env-front">S&amp;C</div>
+    <div class="polaroid"><div class="photo"></div></div>
+  </div>
+  <a class="btn" href="#details">VIEW DETAILS</a>
+</section>
+
+<section class="count">
+  <!-- Video path is relative to this file (html/ folder). If it can't load, the beige gradient stays. -->
+  <video class="count-video" id="count-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="../video/Countdown.mp4" type="video/mp4">
+  </video>
+  <small>UNTIL WE SAY “I DO”</small>
+  <div class="clock" role="timer" aria-live="off">
+    <div><span id="cd-d">00</span><i>DAYS</i></div>
+    <div><span id="cd-h">00</span><i>HOURS</i></div>
+    <div><span id="cd-m">00</span><i>MINUTES</i></div>
+    <div><span id="cd-s">00</span><i>SECONDS</i></div>
   </div>
 </section>
 
-<section id="story">
-  <div class="wrap reveal">
-    <h2>Our story</h2>
-    <div class="rule">✦</div>
-    <p class="lead">A love as endless as the sea. Here is how our story unfolded. <em>(Replace the text below with your own words.)</em></p>
-    <ul class="tl">
-      <li><b>How we met</b>Write the story of your first meeting here.</li>
-      <li><b>The proposal</b>Write about the moment Stefano asked, and Coleen said yes.</li>
-      <li><b>Forever begins</b>May 20, 2027, at Santa Fe Beach Club, Bantayan Island.</li>
-    </ul>
+<section class="story" id="story">
+  <div class="wrap">
+    <div>
+      <h2>Our <em>story</em></h2>
+      <p>It started simply, with a conversation, a laugh, and a connection neither of us expected. We didn’t know it then, but that small moment would become the beginning of everything.</p>
+      <p>Little by little, we became each other’s favorite person. We fell in love through late-night conversations, spontaneous adventures and quiet mornings.</p>
+      <p>Now we get to say yes to forever, and we can’t imagine beginning this next chapter without the people we love most.</p>
+    </div>
+    <div class="photo" role="img" aria-label="Placeholder for a couple’s photo"></div>
   </div>
 </section>
 
-<section id="details">
-  <div class="wrap reveal">
-    <h2 style="font-family:var(--script);text-transform:none;font-size:clamp(4rem,14vw,7rem);letter-spacing:0">Details</h2>
-    <h2 style="margin-top:1rem">Attire</h2>
-    <div class="rule">✦</div>
-    <p class="lead">We kindly request our guests to wear formal and elegant attire for our special day.</p>
+<section class="cta">
+  <h2>We hope you’ll be part of <em>our day</em></h2>
+  <p>We would be delighted to celebrate this special day with you. Kindly confirm your attendance by 15 January 2027 so we can prepare for an unforgettable celebration together on Bantayan Island.</p>
+  <div class="center"><a class="btn" href="#rsvp">RSVP HERE</a></div>
+  <div class="pearl" aria-hidden="true"></div>
+</section>
 
-    <h3 class="sub">Ladies</h3>
-    <div class="palette">
-      <div class="swatch"><i style="--c:#e4a9bd"></i>Dusty Pink</div>
-      <div class="swatch"><i style="--c:#f0b48a"></i>Soft Peach</div>
-      <div class="swatch"><i style="--c:#ecd98e"></i>Butter Yellow</div>
-      <div class="swatch"><i style="--c:#a8d3b8"></i>Pale Mint Green</div>
-      <div class="swatch"><i style="--c:#a9c9e3"></i>Powder Blue</div>
-      <div class="swatch"><i style="--c:#b9a4d8"></i>Soft Lavender</div>
+</div>
+
+<div class="page" data-page="details">
+<div class="details-hd"><h2>The <em>details</em></h2></div>
+<section class="venue-section">
+  <div class="wrap venue">
+    <div class="photo" role="img" aria-label="Placeholder for a venue photo"></div>
+    <div>
+      <h3>Santa Fe Beach Club</h3>
+      <p>Thursday, 20 May 2027 · 4:30 PM</p>
+      <p>Santa Fe, Bantayan Island, Cebu</p>
+      <p>Ceremony and reception schedules to follow.</p>
+      <p style="margin-top:1rem"><a class="btn sm" href="https://www.google.com/maps/search/?api=1&amp;query=Santa+Fe+Beach+Club+Bantayan+Island+Cebu" target="_blank" rel="noopener">OPEN IN MAPS</a></p>
     </div>
-    <p>Long, elegant dresses in soft pastel shades. We encourage simple silhouettes and minimal prints.</p>
+  </div>
+</section>
 
-    <h3 class="sub">Gentlemen</h3>
-    <div class="palette">
-      <div class="swatch"><i style="--c:#dcc3a8"></i>Nude Beige</div>
-      <div class="swatch"><i style="--c:#fbfaf7"></i>White</div>
-    </div>
-    <p>White tops paired with tailored trousers in nude, beige, or sand tones.</p>
-    <p class="note">To preserve the elegant atmosphere of our celebration, we kindly ask everyone to refrain from wearing casual attire, including T-shirts, shorts and denim.</p>
+<section>
+  <h2>Wedding <em>schedule</em></h2>
+  <p>Here’s a glimpse of how our wedding day will unfold. While the timings are carefully planned, they may be adjusted slightly throughout the day.</p>
+  <ol class="tl">
+    <li class="ev"><time>4:30 PM</time><h3>OUR CELEBRATION BEGINS</h3><p>Join us at Santa Fe Beach Club as our day begins.</p></li>
+    <li class="ev"><time>To follow</time><h3>CEREMONY &amp; RECEPTION</h3><p>Schedules to follow.</p></li>
+  </ol>
+</section>
 
-    <h2 style="margin-top:4rem">Where to stay</h2>
-    <div class="rule">✦</div>
-    <p class="lead">For our guests travelling to Bantayan Island, we have listed a few recommended accommodations around Santa Fe for your convenience.</p>
-    <ul class="stay">
+<section class="dress">
+  <h2>Dress <em>code</em></h2>
+  <p>Formal and elegant attire. To preserve the atmosphere of our celebration, we kindly ask everyone to refrain from casual attire such as T-shirts, shorts and denim.</p>
+  <h3 class="sub">Ladies</h3>
+  <p>Long dresses in soft pastel shades.</p>
+  <div class="sw" aria-label="Ladies’ color palette">
+    <div><i style="background:#e4a9bd"></i>Dusty Pink</div>
+    <div><i style="background:#f0b48a"></i>Soft Peach</div>
+    <div><i style="background:#ecd98e"></i>Butter Yellow</div>
+    <div><i style="background:#a8d3b8"></i>Pale Mint Green</div>
+    <div><i style="background:#a9c9e3"></i>Powder Blue</div>
+    <div><i style="background:#b9a4d8"></i>Soft Lavender</div>
+  </div>
+  <h3 class="sub">Gentlemen</h3>
+  <p>White tops with tailored trousers in nude, beige or sand tones.</p>
+  <div class="sw" aria-label="Gentlemen’s color palette">
+    <div><i style="background:#dcc3a8"></i>Nude Beige</div>
+    <div><i style="background:#fbfaf7"></i>White</div>
+  </div>
+</section>
+
+<section class="travel" id="journey">
+  <div class="panel">
+    <h2>Travel &amp; <em>stay</em></h2>
+    <p>For guests travelling to Bantayan Island, here are a few recommended places to stay around Santa Fe.</p>
+    <ul class="lodging">
       <li>Sorana Island Villas</li>
       <li>Amihan Beach Cabanas</li>
       <li>Kota Beach Resort</li>
       <li>Anaya Beach Resort</li>
       <li>Anika Island Resort</li>
     </ul>
-    <p class="lead">Kindly note that we do not recommend booking accommodations at our wedding venue. Guests are encouraged to arrange their stay at nearby resorts or accommodations.</p>
+    <p>We do not recommend booking accommodations at our wedding venue. Please arrange your stay at a nearby resort.</p>
+
+    <h2 style="margin-top:4rem">Getting <em>there</em></h2>
+    <ol class="tl">
+      <li class="ev"><time>1–1.5 hrs</time><h3>FLY TO CEBU</h3><p>Fly to Mactan-Cebu International Airport, then take a taxi or Grab to Cebu North Bus Terminal.</p></li>
+      <li class="ev"><time>3–4 hrs</time><h3>BUS TO HAGNAYA</h3><p>Ride a Ceres Liner bus to Hagnaya Port, or arrange a private van.</p></li>
+      <li class="ev"><time>1.5–2 hrs</time><h3>FERRY TO SANTA FE</h3><p>Take a ferry bound for Santa Fe, Bantayan Island.</p></li>
+      <li class="ev"><time>10–20 min</time><h3>TRICYCLE</h3><p>Take a local tricycle or resort transfer to Santa Fe Beach Club.</p></li>
+    </ol>
+    <p>Your presence will make our special day even more meaningful.</p>
   </div>
 </section>
 
-<section id="schedule">
-  <div class="wrap reveal">
-    <h2>The celebration</h2>
-    <div class="rule">✦</div>
-    <p class="lead"><strong>Thursday, May 20, 2027</strong><br>Santa Fe Beach Club, Bantayan Island, Cebu</p>
-    <ul class="tl">
-      <li><b>4:30 PM</b>Our celebration begins</li>
-      <li><b>Ceremony and reception</b>Schedules to follow</li>
-    </ul>
-    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Santa+Fe+Beach+Club+Bantayan+Island+Cebu" target="_blank" rel="noopener">Open in Google Maps</a>
-    <button class="maplink" id="cal" type="button">Add to calendar</button>
-  </div>
+<section class="faq" id="faq">
+  <div class="faq-photo" role="img" aria-label="Placeholder for a couple’s photo"></div>
+  <h2>Good to <em>know</em></h2>
+  <details><summary>CAN I BRING A PLUS ONE?</summary><p>Due to limited venue capacity, we can only accommodate the guests formally listed on your invitation. Thank you for celebrating with us.</p></details>
+  <details><summary>HOW DO I RSVP?</summary><p>Use the “RSVP Here” button on the home page to access the form. Please reply by January 15, 2027, or confirm by calling or texting us.</p></details>
+  <details><summary>WHERE ARE THE CEREMONY AND RECEPTION?</summary><p>Both will take place at Santa Fe Beach Club, Bantayan Island, Cebu. Schedules to follow.</p></details>
+  <details><summary>ARE CHILDREN INVITED?</summary><p>To keep our celebration intimate and let all guests relax and enjoy themselves, we’ve made our special day adults only. We truly appreciate your understanding.</p></details>
 </section>
 
-<section id="journey">
-  <div class="wrap reveal">
-    <h2>How to get to Bantayan Island</h2>
-    <div class="rule">✦</div>
-    <div class="steps">
-      <div class="step"><div>Take a flight to Mactan-Cebu International Airport.<br>Take a taxi or Grab to Cebu North Bus Terminal.</div><div class="ico">✈️</div><div class="time">Approximately<br>1 hour – 1.5 hours</div></div>
-      <div class="step"><div>Take a Ceres Liner bus bound for Hagnaya Port.<br>Alternatively, arrange a private van rental for a more convenient journey.</div><div class="ico">🚌</div><div class="time">Approximately<br>3 hours – 4 hours</div></div>
-      <div class="step"><div>Take a ferry bound for Santa Fe, Bantayan Island.</div><div class="ico">⛴️</div><div class="time">Approximately<br>1.5 hours – 2 hours</div></div>
-      <div class="step"><div>Take a local tricycle or arrange a resort transfer.</div><div class="ico">🛺</div><div class="time">10–20 minutes, depending on your chosen accommodation</div></div>
-    </div>
-    <div class="venue-box">
-      <h3>VENUE</h3>
-      <p>Take a local tricycle to Santa Fe Beach Club, Bantayan Island, Cebu.</p>
-    </div>
-    <p class="closing">Your presence will make our special day even more meaningful.<br>We look forward in celebrating our beautiful day with you.</p>
-  </div>
-</section>
+</div>
 
-<section id="gallery">
-  <div class="wrap reveal">
-    <h2>Gallery</h2>
-    <div class="rule">✦</div>
-    <p class="lead">A few moments from our journey together.</p>
+<div class="page" data-page="photos">
+  <section class="photos">
+    <h2>Our <em>photos</em></h2>
+    <p>A few moments from our journey together.</p>
     <div class="gal" id="gal"></div>
+  </section>
+</div>
+
+<div class="page" data-page="rsvp">
+<section class="rsvp" id="rsvp">
+  <h2>Kindly <em>reply</em></h2>
+  <p style="margin-bottom:3rem">We reserved 2 seats in your honor. Please reply by 15 January 2027.</p>
+  <div class="wrap">
+    <form id="rsvp-form">
+      <label for="name">Your full name*</label>
+      <input id="name" required autocomplete="name">
+      <label for="response">Will you join us?*</label>
+      <select id="response" required>
+        <option value="">Select one</option>
+        <option>Graciously accept</option>
+        <option>Respectfully decline</option>
+      </select>
+      <button class="btn" type="submit">SEND REPLY</button>
+    </form>
+    <div class="done" id="thanks">
+      <h2 style="margin-bottom:.6rem">Thank you<br><em>so much</em></h2>
+      <p>Your reply is noted. We can’t wait to celebrate with you on May 20, 2027.</p>
+    </div>
+    <div class="photo" role="img" aria-label="Placeholder for a couple’s photo"></div>
   </div>
 </section>
 
-<section id="reminders">
-  <div class="wrap reveal">
-    <h2 class="script-title">Gentle Reminders</h2>
-    <div class="rem">
-      <h2>Adults only event</h2>
-      <p>To keep our celebration intimate and allow all guests to relax and enjoy themselves, we have chosen to make our special day <strong>adults only.</strong> We truly appreciate your understanding and support.</p>
-    </div>
-    <div class="rem">
-      <h2>Plus-ones</h2>
-      <p>Due to limited venue capacity, we can only accommodate the guests formally listed on your invitation. Thank you for celebrating with us.</p>
-    </div>
-  </div>
-</section>
-
-<section id="rsvp">
-  <div class="card">
-    <div class="frame reveal">
-      <h2>RSVP</h2>
-      <p>We reserved <strong>(<span id="seats">2</span>)</strong> seats in your honor.</p>
-      <p class="deadline">The courtesy of a response is required no later than January 15, 2027.</p>
-
-      <form name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="rsvp-form">
-        <input type="hidden" name="form-name" value="rsvp">
-        <p hidden><label>Leave empty <input name="bot-field"></label></p>
-        <div>
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required autocomplete="name">
-        </div>
-        <fieldset>
-          <legend>Will you join us?</legend>
-          <label class="opt"><input type="radio" name="response" value="Graciously Accept" required> Graciously Accept</label>
-          <label class="opt"><input type="radio" name="response" value="Respectfully Decline"> Respectfully Decline</label>
-        </fieldset>
-        <button class="send" type="submit">Send my reply</button>
-        <p class="msg" id="msg" role="status"></p>
-      </form>
-
-      <div class="thanks" id="thanks" hidden>
-        <h3>Thank you!</h3>
-        <p id="thanks-msg"></p>
-      </div>
-
-      <div class="contacts">
-        <p>You may also confirm by reaching out to us through our phone numbers or Facebook accounts.</p>
-        <p><a href="tel:+639480636622">(+63) 948 063 6622</a> – Groom</p>
-        <p><a href="tel:+639277755812">(+63) 927 775 5812</a> – Bride</p>
-      </div>
-    </div>
-  </div>
-</section>
+<p class="contact">You may also confirm by reaching us at <a href="tel:+639480636622">(+63) 948 063 6622</a> (Groom) or <a href="tel:+639277755812">(+63) 927 775 5812</a> (Bride).</p>
+</div>
+</main>
 
 <div class="lb" id="lb"><img alt=""></div>
-<button class="music" id="music" aria-pressed="false" aria-label="Play background music" title="Play music">♪</button>
-
-<footer>S&amp;C</footer>
+<footer>
+  
+  <div>S&amp;C</div>
+  <button class="btn sm" id="to-top" type="button">BACK TO TOP</button>
+</footer>
 
 <script>
-  // ---------- buttons scroll smoothly to their section ----------
-  document.querySelectorAll('[data-go]').forEach(b => {
-    b.addEventListener('click', () => {
-      document.getElementById(b.dataset.go).scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+(() => {
+  // Hero video: switch off the sand fallback once the video can play.
+  const hero = document.getElementById("top");
+  const video = document.getElementById("hero-video");
+  video.addEventListener("canplay", () => {
+    hero.classList.add("has-video");
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) video.pause();
   });
 
-  // ---------- highlight the current section's button ----------
-  const navBtns = [...document.querySelectorAll('.nav button')];
-  const spy = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navBtns.forEach(b => b.classList.toggle('active', b.dataset.go === e.target.id));
-        const act = navBtns.find(b => b.classList.contains('active'));
-        if (act) act.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
-      }
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  document.querySelectorAll('section').forEach(s => spy.observe(s));
+  // Countdown video: same idea as the hero.
+  const countSection = document.querySelector(".count");
+  const countVideo = document.getElementById("count-video");
+  countVideo.addEventListener("canplay", () => {
+    countSection.classList.add("has-video");
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) countVideo.pause();
+  });
 
-  // ---------- soft fade-in as each section arrives ----------
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // Countdown to May 20, 2027, 4:30 PM Philippine time.
+  const target = new Date("2027-05-20T16:30:00+08:00").getTime();
+  const units = [["cd-d", 864e5], ["cd-h", 36e5], ["cd-m", 6e4], ["cd-s", 1e3]];
+  const tick = () => {
+    let ms = Math.max(0, target - Date.now());
+    for (const [id, size] of units) {
+      document.getElementById(id).textContent = String(Math.floor(ms / size)).padStart(2, "0");
+      ms %= size;
+    }
+  };
+  tick();
+  setInterval(tick, 1000);
 
-  // ---------- countdown to May 20, 2027, 4:30 PM (Philippine time) ----------
-  const target = new Date('2027-05-20T16:30:00+08:00');
-  function tickCount() {
-    let s = Math.max(0, Math.floor((target - new Date()) / 1000));
-    const v = { d: Math.floor(s / 86400), h: Math.floor(s % 86400 / 3600), m: Math.floor(s % 3600 / 60), s: s % 60 };
-    for (const k in v) document.getElementById('cd-' + k).textContent = v[k];
-  }
-  tickCount();
-  setInterval(tickCount, 1000);
+  // Pages: show one section of the site at a time, driven by the URL hash.
+  const pages = [...document.querySelectorAll(".page")];
+  const navLinks = [...document.querySelectorAll("nav a")];
+  const route = () => {
+    const page = pages.find(p => p.dataset.page === location.hash.slice(1)) || pages[0];
+    const name = page.dataset.page;
+    pages.forEach(p => p.classList.toggle("on", p === page));
+    document.body.classList.toggle("inner", name !== "home");
+    navLinks.forEach(a => a.getAttribute("href") === "#" + name ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
+    if (name === "home" && !matchMedia("(prefers-reduced-motion: reduce)").matches) [video, countVideo].forEach(v => v.play().catch(() => {}));
+    scrollTo({ top: 0, behavior: "instant" });
+  };
+  addEventListener("hashchange", route);
+  route();
 
-  // ---------- gallery: add your photo paths here, e.g. '../image/photo1.jpg' ----------
+  // Photos: add your image paths here, e.g. "../image/photo1.jpg".
   const PHOTOS = [];
-  const gal = document.getElementById('gal');
-  const lb = document.getElementById('lb');
-  const slots = PHOTOS.length ? PHOTOS : Array(6).fill(null);
-  slots.forEach(src => {
-    const f = document.createElement('figure');
+  const gal = document.getElementById("gal");
+  const lb = document.getElementById("lb");
+  (PHOTOS.length ? PHOTOS : Array(6).fill(null)).forEach(src => {
+    const fig = document.createElement("figure");
     if (src) {
       const img = new Image();
-      img.src = src; img.alt = 'Stefano and Coleen'; img.loading = 'lazy';
-      img.addEventListener('click', () => { lb.querySelector('img').src = src; lb.classList.add('on'); });
-      f.appendChild(img);
+      img.src = src; img.alt = "Stefano and Coleen"; img.loading = "lazy";
+      img.onclick = () => { lb.querySelector("img").src = src; lb.classList.add("on"); };
+      fig.append(img);
     } else {
-      f.textContent = 'Photo coming soon';
+      fig.className = "photo";
     }
-    gal.appendChild(f);
+    gal.append(fig);
   });
-  lb.addEventListener('click', () => lb.classList.remove('on'));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
+  lb.onclick = () => lb.classList.remove("on");
 
-  // ---------- background music ----------
-const audio = new Audio('../music/La Vie En Rose Instrumental Music.mp3');
-audio.loop = true;
-audio.volume = 0.5;
-
-const music = document.getElementById('music');
-
-// Automatically attempt to play when website opens
-window.addEventListener('load', () => {
-    audio.play().then(() => {
-        music.setAttribute('aria-pressed', 'true');
-        music.title = 'Pause music';
-    }).catch(() => {
-        // Browser blocked autoplay
-        music.setAttribute('aria-pressed', 'false');
-        music.title = 'Click to play music';
-    });
-});
-
-// Music button toggle
-music.addEventListener('click', () => {
-    if (audio.paused) {
-        audio.play().then(() => {
-            music.setAttribute('aria-pressed', 'true');
-            music.title = 'Pause music';
-        }).catch(() => {
-            music.title = 'Unable to play music';
-        });
-    } else {
-        audio.pause();
-        music.setAttribute('aria-pressed', 'false');
-        music.title = 'Play music';
-    }
-});
-
-  // ---------- personal link: ?guest=Maria+Santos&seats=2 ----------
-  const qs = new URLSearchParams(location.search);
-  const guest = (qs.get('guest') || '').trim().slice(0, 80);
-  const seats = Math.min(Math.max(parseInt(qs.get('seats'), 10) || 2, 1), 10);
-  if (guest) {
-    const g = document.getElementById('greet');
-    g.textContent = 'Dear ' + guest + ',';
-    g.hidden = false;
-    document.getElementById('name').value = guest;
-  }
-  document.getElementById('seats').textContent = seats;
-
-  // ---------- add to calendar (.ics file) ----------
-  document.getElementById('cal').addEventListener('click', () => {
-    const ics = [
-      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Stefano and Coleen//Wedding//EN',
-      'BEGIN:VEVENT', 'UID:wedding-20270520@stefano-coleen', 'DTSTAMP:20261120T000000Z',
-      'DTSTART:20270520T083000Z', 'DTEND:20270520T113000Z',   // 4:30 PM Philippine time, about 3 hours
-      'SUMMARY:Stefano & Coleen’s Wedding',
-      'LOCATION:Santa Fe Beach Club\\, Bantayan Island\\, Cebu',
-      'DESCRIPTION:Ceremony and reception schedules to follow.',
-      'END:VEVENT', 'END:VCALENDAR'
-    ].join('\r\n');
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
-    a.download = 'stefano-coleen-wedding.ics';
-    a.click();
-    URL.revokeObjectURL(a.href);
+  // Back to top button in the footer.
+  document.getElementById("to-top").addEventListener("click", () => {
+    scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   });
 
-  // ---------- RSVP (Netlify Forms) ----------
-  const form = document.getElementById('rsvp-form');
-  const msg = document.getElementById('msg');
-  form.addEventListener('submit', async e => {
+  // RSVP: shows the thank-you message only. To collect replies, send the form
+  // to your own backend here (for example Netlify Forms) before showing it.
+  document.getElementById("rsvp-form").addEventListener("submit", e => {
     e.preventDefault();
-    msg.textContent = 'Sending…';
-    try {
-      const res = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString()
-      });
-      if (!res.ok) throw new Error();
-      const accepted = form.elements.response.value === 'Graciously Accept';
-      form.reset();
-      form.hidden = true;
-      document.getElementById('thanks-msg').textContent = accepted
-        ? 'Your reply has been received. We can’t wait to celebrate with you on May 20, 2027.'
-        : 'Your reply has been received. We will miss you, and thank you for letting us know.';
-      document.getElementById('thanks').hidden = false;
-    } catch (err) {
-      msg.textContent = 'Your reply did not send. Please text us at the numbers below.';
-    }
+    e.target.style.display = "none";
+    document.getElementById("thanks").style.display = "grid";
   });
+})();
 </script>
 </body>
 </html>
