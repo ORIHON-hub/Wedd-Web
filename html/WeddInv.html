@@ -8,6 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Italianno&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<script>
+/* Enables the fade-in animations (skipped for visitors who prefer reduced motion). */
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("js");
+</script>
 <style>
 /* ---------- tokens ---------- */
 :root{
@@ -118,11 +122,13 @@ nav a[aria-current="page"]{border-bottom:1px solid currentColor}
 .pearl{position:absolute;right:-6rem;bottom:-7rem;width:22rem;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#ece4d3 45%,#bdb09a 100%);box-shadow:inset -20px -24px 50px rgba(120,100,70,.35);opacity:.9}
 
 /* ---------- details ---------- */
-.details-hd{height:14rem;display:grid;place-items:center;padding:0;background:linear-gradient(rgba(216,194,168,.55),rgba(216,194,168,.55)),radial-gradient(circle at 20% 40%,#fff,transparent 50%) var(--sand)}
-.details-hd h2{margin:0;color:#fff;letter-spacing:.12em}
+.details-hd{height:18rem;display:grid;place-items:center;padding:0;background:linear-gradient(rgba(60,45,30,.35),rgba(60,45,30,.35)),url("../image/Detail%20BG.jpg") center/cover no-repeat var(--sand)}
+.details-hd h2{margin:0;color:#fff;font-size:clamp(1.1rem,3.5vw,1.6rem);letter-spacing:.4em;text-transform:uppercase;text-shadow:0 2px 24px rgba(40,28,16,.45)}
+.details-hd h2 em{display:block;margin-top:.15em;font-size:3.6em;line-height:.9;letter-spacing:0;text-transform:none}
 .venue-section{padding-top:0}
 .venue{display:grid;grid-template-columns:1fr 1.2fr;gap:3.5rem;align-items:center;padding-top:5rem}
 .venue .photo{aspect-ratio:4/3}
+.venue-img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
 .venue h3{font-size:2.2rem;margin-bottom:.4rem}
 .venue p{text-align:left;margin:0 0 .5rem}
 
@@ -142,14 +148,21 @@ nav a[aria-current="page"]{border-bottom:1px solid currentColor}
 /* ---------- dress code ---------- */
 .dress{text-align:center;background:var(--paper)}
 .sw{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin-top:1.5rem}
-.sw div{width:5rem;font-size:.75rem;line-height:1.3;color:var(--soft)}
-.sw i{display:block;height:4rem;margin-bottom:.4rem;border:1px solid var(--line);border-radius:2px}
+.sw div{width:6rem;font-size:.75rem;line-height:1.3;color:var(--soft)}
+.note{margin-top:2rem;font:italic 1.1rem/1.6 var(--serif);letter-spacing:.04em}
+.sw img{display:block;width:100%;height:5rem;margin-bottom:.4rem;object-fit:contain}
 
 /* ---------- travel ---------- */
 .travel{background:linear-gradient(var(--beige),var(--beige-light))}
 .panel{max-width:56rem;margin:auto;padding:4rem 2rem;background:var(--bg);text-align:center}
 .panel h2{font-size:clamp(1.8rem,4vw,2.6rem)}
-.lodging{margin:1.5rem 0;color:var(--soft)}
+.lodging{display:flex;flex-wrap:wrap;justify-content:center;gap:1.8rem 1.5rem;margin:2rem 0}
+.lodging li{width:min(15rem,100%)}
+.stay{display:block;color:inherit;text-decoration:none}
+.stay .pic{display:block;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(#efe4d3 0 55%,#d8c3a5 55% 62%,#e9dcc8 62%)}
+.stay img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.stay:hover img,.stay:focus-visible img{transform:scale(1.05)}
+.stay .name{display:block;margin-top:.7rem;font:1.15rem var(--serif);letter-spacing:.06em;color:var(--ink)}
 
 /* ---------- FAQ ---------- */
 .faq{padding-bottom:3rem;background:var(--paper)}
@@ -178,6 +191,11 @@ form .btn{width:100%;margin-top:1.6rem}
 footer{padding:4rem 1rem;text-align:center;font:2.6rem var(--script);color:var(--soft)}
 footer .btn{display:block;margin:1.5rem auto 0}
 .footer-logo{display:block;width:clamp(5rem,14vw,7.5rem);height:auto;margin:0 auto;filter:brightness(0)}
+
+/* ---------- fade-in on scroll ---------- */
+.js .reveal{opacity:0}
+.js .reveal.in{animation:fadeIn 1s ease both;animation-delay:var(--d,0s)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* ---------- music toggle ---------- */
 .music-btn{position:fixed;right:calc(1rem + env(safe-area-inset-right,0px));bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:30;width:2.8rem;height:2.8rem;display:grid;place-items:center;border:1px solid var(--ink);border-radius:50%;background:var(--bg);color:var(--ink);cursor:pointer;box-shadow:0 4px 14px rgba(60,45,30,.18);transition:background .2s,color .2s}
@@ -289,10 +307,10 @@ footer .btn{display:block;margin:1.5rem auto 0}
 </div>
 
 <div class="page" data-page="details">
-<div class="details-hd"><h2>The <em>details</em></h2></div>
+<div class="details-hd"><h2>The <em>Details</em></h2></div>
 <section class="venue-section">
   <div class="wrap venue">
-    <div class="photo" role="img" aria-label="Placeholder for a venue photo"></div>
+    <img class="venue-img" src="../image/Santa%20Fe.jpg" alt="Santa Fe Beach Club, Bantayan Island">
     <div>
       <h3>Santa Fe Beach Club</h3>
       <p>Thursday, 20 May 2027 · 4:30 PM</p>
@@ -313,36 +331,47 @@ footer .btn{display:block;margin:1.5rem auto 0}
 </section>
 
 <section class="dress">
-  <h2>Dress <em>code</em></h2>
+  <h2><em>Attire</em></h2>
   <p>Formal and elegant attire. To preserve the atmosphere of our celebration, we kindly ask everyone to refrain from casual attire such as T-shirts, shorts and denim.</p>
   <h3 class="sub">Ladies</h3>
-  <p>Long dresses in soft pastel shades.</p>
+  <p>Long, elegant dresses in soft pastel shades. We encourage simple silhouettes, minimal prints.</p>
   <div class="sw" aria-label="Ladies’ color palette">
-    <div><i style="background:#e4a9bd"></i>Dusty Pink</div>
-    <div><i style="background:#f0b48a"></i>Soft Peach</div>
-    <div><i style="background:#ecd98e"></i>Butter Yellow</div>
-    <div><i style="background:#a8d3b8"></i>Pale Mint Green</div>
-    <div><i style="background:#a9c9e3"></i>Powder Blue</div>
-    <div><i style="background:#b9a4d8"></i>Soft Lavender</div>
+    <div><img src="../image/dusty-pink-shell.png" alt="">Dusty Pink</div>
+    <div><img src="../image/soft-peach-shell.png" alt="">Soft Peach</div>
+    <div><img src="../image/butter-yellow-shell.png" alt="">Butter Yellow</div>
+    <div><img src="../image/pale-mint-green-shell.png" alt="">Pale Mint Green</div>
+    <div><img src="../image/powder-blue-shell.png" alt="">Powder Blue</div>
+    <div><img src="../image/soft-lavender-shell.png" alt="">Soft Lavender</div>
   </div>
   <h3 class="sub">Gentlemen</h3>
-  <p>White tops with tailored trousers in nude, beige or sand tones.</p>
+  <p>White tops paired with tailored trousers in nude, beige or sand tones.</p>
   <div class="sw" aria-label="Gentlemen’s color palette">
-    <div><i style="background:#dcc3a8"></i>Nude Beige</div>
-    <div><i style="background:#fbfaf7"></i>White</div>
+    <div><img src="../image/nude-beige-shell.png" alt="">Nude Beige</div>
+    <div><img src="../image/white-shell.png" alt="">White</div>
   </div>
+  <p class="note">Note: To preserve the atmosphere of our celebration, we kindly ask everyone to refrain from casual attire, including T-shirts, shorts and denim.</p>
 </section>
 
 <section class="travel" id="journey">
   <div class="panel">
-    <h2>Travel &amp; <em>stay</em></h2>
+    <h2>Where to <em>Stay</em></h2>
     <p>For guests travelling to Bantayan Island, here are a few recommended places to stay around Santa Fe.</p>
     <ul class="lodging">
-      <li>Sorana Island Villas</li>
-      <li>Amihan Beach Cabanas</li>
-      <li>Kota Beach Resort</li>
-      <li>Anaya Beach Resort</li>
-      <li>Anika Island Resort</li>
+      <li><a class="stay" href="https://www.soranaislandvillas.com/" target="_blank" rel="noopener">
+        <span class="pic"><img src="../image/SoranaVilla.jpg" alt="Sorana Island Villas" onerror="this.style.display='none'"></span>
+        <span class="name">Sorana Island Villas</span></a></li>
+      <li><a class="stay" href="https://amihanbeachcabanas.com/" target="_blank" rel="noopener">
+        <span class="pic"><img src="../image/AmihanBeach.jpg" alt="Amihan Beach Cabanas" onerror="this.style.display='none'"></span>
+        <span class="name">Amihan Beach Cabanas</span></a></li>
+      <li><a class="stay" href="https://www.kotabeachresort.com/" target="_blank" rel="noopener">
+        <span class="pic"><img src="../image/KotaBeach.webp" alt="Kota Beach Resort" onerror="this.style.display='none'"></span>
+        <span class="name">Kota Beach Resort</span></a></li>
+      <li><a class="stay" href="https://www.facebook.com/anayabeachresort/" target="_blank" rel="noopener">
+        <span class="pic"><img src="../image/AnayaResort.jpg" alt="Anaya Beach Resort" onerror="this.style.display='none'"></span>
+        <span class="name">Anaya Beach Resort</span></a></li>
+      <li><a class="stay" href="https://anikaislandresort.com/accommodation/" target="_blank" rel="noopener">
+        <span class="pic"><img src="../image/AnikaResort.png" alt="Anika Island Resort" onerror="this.style.display='none'"></span>
+        <span class="name">Anika Island Resort</span></a></li>
     </ul>
     <p>We do not recommend booking accommodations at our wedding venue. Please arrange your stay at a nearby resort.</p>
 
@@ -465,6 +494,9 @@ footer .btn{display:block;margin:1.5rem auto 0}
     const name = page.dataset.page;
     pages.forEach(p => p.classList.toggle("on", p === page));
     document.body.classList.toggle("inner", name !== "home");
+    // Replay the fade-in each time a page is opened.
+    if (route.last !== undefined && route.last !== name) page.querySelectorAll(".in").forEach(el => el.classList.remove("in"));
+    route.last = name;
     navLinks.forEach(a => a.getAttribute("href") === "#" + name ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
     if (name === "home" && !reduceMotion()) [video, countVideo].forEach(v => v.play().catch(() => {}));
     scrollTo({ top: 0, behavior: "instant" });
@@ -489,6 +521,28 @@ footer .btn{display:block;margin:1.5rem auto 0}
     gal.append(fig);
   });
   lb.onclick = () => lb.classList.remove("on");
+
+  // Fade-in: titles and content fade in as they scroll into view (fonts are left untouched).
+  if (document.documentElement.classList.contains("js")) {
+    const REVEAL = ".hero h1, .hero small, .hero-date, .hero-tagline, h2, h3.sub, .venue h3, section p:not(.ev p), .contact, .env, .count small, .clock, .story .photo, .venue .photo, .venue-img, .rsvp .photo, .faq-photo, .center, .invite > .btn, .ev, .sw div, .lodging li, .faq details, .gal figure, .rsvp form, .done, footer > *";
+
+    document.querySelectorAll(REVEAL).forEach(el => {
+      el.classList.add("reveal");
+      const index = [...el.parentElement.children].filter(c => c.matches(REVEAL)).indexOf(el);
+      el.style.setProperty("--d", Math.min(index, 5) * 0.12 + "s");
+    });
+
+    // Hero timing: tagline line, then names, then date and tagline.
+    document.querySelector(".hero small").style.setProperty("--d", ".2s");
+    document.querySelector(".hero h1").style.setProperty("--d", ".7s");
+    document.querySelector(".hero-date").style.setProperty("--d", "1.4s");
+    document.querySelector(".hero-tagline").style.setProperty("--d", "1.8s");
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); });
+    }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  }
 
   // Background music: try to autoplay; if the browser blocks it, start on the first interaction.
   const music = document.getElementById("bg-music");
