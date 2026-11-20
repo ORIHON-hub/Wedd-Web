@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stefano &amp; Coleen · May 20, 2027</title>
+<meta name="description" content="You are invited to the wedding of Stefano and Coleen on May 20, 2027 at Santa Fe Beach Club, Bantayan Island.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stefano &amp; Coleen · May 20, 2027">
+<meta property="og:description" content="A love as endless as the sea. We invite you to celebrate our wedding.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='72' font-size='70' text-anchor='middle'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#efeae6; --ink:#3a3836; --soft:#78726d; --line:#b9b2a9;
+  --navy:#032a44; --navy-ink:#e9e5df; --mint:#d5e0dc; --peach:#ecdccf;
+  --script:"Mrs Saint Delafield",cursive;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Josefin Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink); font-family:var(--sans); font-weight:300; line-height:1.7;
+  background:var(--paper) radial-gradient(rgba(60,50,40,.07) 1px,transparent 1.2px) 0 0/7px 7px;
+  animation:pageIn .8s ease both;
+}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+
+/* ---------- section buttons (nav) ---------- */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:20;
+  display:flex; gap:.5rem; justify-content:center; padding:.7rem .8rem;
+  background:rgba(239,234,230,.88); backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(120,114,109,.25);
+  overflow-x:auto; scrollbar-width:none;
+}
+.nav::-webkit-scrollbar{display:none}
+.nav button{
+  flex:none; font:inherit; font-size:.82rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink); background:transparent; border:1px solid var(--line); border-radius:999px;
+  padding:.45rem 1.1rem; cursor:pointer; transition:background .35s,color .35s,border-color .35s;
+}
+.nav button:hover{border-color:var(--ink)}
+.nav button.active{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--navy); outline-offset:3px}
+
+/* ---------- sections ---------- */
+section{padding:6.5rem 1.4rem 5rem; scroll-margin-top:0}
+.wrap{max-width:860px; margin:0 auto}
+h2{font-family:var(--serif); font-weight:400; font-size:clamp(2rem,6vw,3.2rem); letter-spacing:.06em; text-transform:uppercase; text-align:center; margin:0}
+.rule{display:flex; align-items:center; gap:.8rem; max-width:420px; margin:.6rem auto 1.6rem; color:var(--soft)}
+.rule::before,.rule::after{content:""; flex:1; height:1px; background:var(--line)}
+p{margin:.4rem 0}
+.center{text-align:center}
+.lead{max-width:560px; margin:0 auto; text-align:center}
+
+/* reveal: one soft fade as each section arrives */
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1; transform:none}
+
+/* ---------- home ---------- */
+#home{min-height:100svh; display:flex; align-items:center; padding-top:5rem}
+.mono{font-family:var(--serif); font-size:2.6rem; line-height:1; letter-spacing:.04em; text-align:center; margin-bottom:1rem}
+.names-script{font-family:var(--script); font-size:clamp(4.4rem,17vw,9rem); line-height:.95; text-align:center; margin:0}
+.names-script span{display:block}
+.names-script .plus{font-family:var(--sans); font-size:1.6rem; font-weight:600; margin:.3rem 0}
+.tag{font-style:italic; letter-spacing:.3em; text-align:center; margin-top:2.4rem; font-size:.95rem}
+.names-caps{text-align:center; font-weight:600; letter-spacing:.35em; font-size:clamp(1.1rem,4vw,1.6rem); margin:.2rem 0 2rem}
+.date{display:block; width:fit-content; margin:1.4rem auto 0; font-style:italic; font-size:clamp(1.3rem,5vw,1.9rem); letter-spacing:.3em; border-bottom:1px solid var(--ink); padding:0 .2em .2rem .5em}
+.venue{letter-spacing:.2em; text-transform:uppercase; font-size:.92rem; margin-top:1.4rem}
+.hero-btn{display:block; margin:2.4rem auto 0; font:inherit; letter-spacing:.2em; text-transform:uppercase; font-size:.85rem; padding:.8rem 2rem; color:var(--paper); background:var(--ink); border:0; border-radius:999px; cursor:pointer; transition:transform .3s,background .3s}
+.hero-btn:hover{transform:translateY(-2px); background:#1f1e1d}
+
+/* ---------- details ---------- */
+.sub{font-family:var(--serif); font-size:1.7rem; letter-spacing:.12em; text-transform:uppercase; margin:2rem 0 .8rem}
+.palette{display:flex; flex-wrap:wrap; gap:1.2rem 1.4rem}
+.swatch{width:84px; text-align:center; font-size:.78rem; color:var(--soft); line-height:1.3}
+.swatch i{display:block; width:58px; height:58px; margin:0 auto .45rem; border-radius:50% 50% 42% 42%; border:1px solid rgba(58,56,54,.4); background:var(--c); box-shadow:inset 0 -10px 0 rgba(255,255,255,.18)}
+.note{font-style:italic; margin-top:1.4rem}
+.stay{list-style:none; padding:0; margin:1rem auto; max-width:360px}
+.stay li{padding:.3rem 0 .3rem 2rem; position:relative; font-size:1.05rem}
+.stay li::before{content:"✦"; position:absolute; left:.3rem; color:var(--soft)}
+
+/* ---------- journey ---------- */
+#journey .steps{max-width:640px; margin:0 auto; position:relative}
+.step{display:grid; grid-template-columns:1fr 64px 1fr; align-items:center; gap:.8rem; padding:1.5rem 0; text-align:center}
+.step .ico{font-size:2.6rem; filter:grayscale(1) contrast(1.3)}
+.step:not(:last-child) .ico{position:relative}
+.step .time{color:var(--soft)}
+.step+.step{border-top:1px dashed var(--line)}
+.venue-box{margin-top:2rem; text-align:center; border-top:1px dotted var(--ink); padding-top:1.6rem}
+.venue-box h3{font-family:var(--serif); font-weight:400; font-size:2rem; letter-spacing:.1em; margin:0 0 .5rem}
+.closing{font-style:italic; text-align:center; margin-top:2.6rem}
+@media(max-width:560px){
+  .step{grid-template-columns:1fr; gap:.2rem}
+}
+
+/* ---------- reminders ---------- */
+#reminders{background:linear-gradient(180deg,var(--mint),var(--paper) 55%,var(--peach))}
+.script-title{font-family:var(--script); font-size:clamp(3.6rem,13vw,6.4rem); line-height:1; text-align:center; margin:0 0 1.5rem}
+.rem{text-align:center; padding:1.4rem 0}
+.rem h2{font-size:clamp(1.7rem,5vw,2.4rem)}
+.rem+.rem{border-top:1px solid rgba(120,114,109,.3)}
+.rem p{max-width:620px; margin:.6rem auto 0}
+
+/* ---------- rsvp ---------- */
+#rsvp{padding:0}
+.card{background:var(--navy); color:var(--navy-ink); padding:6.5rem 1.4rem 5rem}
+.frame{max-width:860px; margin:0 auto; border:2px solid #b9b2a9; padding:2.4rem 1.6rem}
+.frame h2{text-align:left; color:#b9b2a9; font-size:clamp(3rem,11vw,5.2rem); letter-spacing:.04em}
+.deadline{font-weight:600; letter-spacing:.04em}
+form{max-width:480px; margin:1.8rem auto 0; display:grid; gap:1.2rem}
+label,legend{display:block; font-weight:600; letter-spacing:.06em; margin-bottom:.3rem}
+input[type=text],select{width:100%; font:inherit; color:var(--navy-ink); background:transparent; border:0; border-bottom:2px solid #b9b2a9; padding:.5rem .2rem; border-radius:0}
+select option{color:#222}
+fieldset{border:0; padding:0; margin:0}
+.opt{display:flex; align-items:center; gap:.8rem; font-weight:300; letter-spacing:.04em; margin:.5rem 0; cursor:pointer}
+.opt input{appearance:none; width:26px; height:26px; border:3px solid #e9e5df; border-radius:50%; margin:0; cursor:pointer; transition:background .25s}
+.opt input:checked{background:radial-gradient(#e9e5df 45%,transparent 50%)}
+.send{font:inherit; letter-spacing:.2em; text-transform:uppercase; font-size:.85rem; padding:.85rem 2rem; background:var(--navy-ink); color:var(--navy); border:0; border-radius:999px; cursor:pointer; justify-self:start; transition:transform .3s}
+.send:hover{transform:translateY(-2px)}
+.msg{min-height:1.6rem; font-style:italic}
+.contacts{margin-top:2rem; font-style:italic}
+.contacts p{margin:.2rem 0}
+footer{text-align:center; padding:2.4rem 1rem; font-family:var(--serif); font-size:1.8rem; background:var(--navy); color:#b9b2a9}
+
+/* ---------- countdown, timeline, map, gallery, music ---------- */
+.count{display:flex; justify-content:center; gap:1.1rem; margin-top:1.8rem; text-align:center}
+.count div{min-width:62px}
+.count b{display:block; font-family:var(--serif); font-weight:400; font-size:clamp(2rem,8vw,3rem); line-height:1}
+.count span{font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--soft)}
+.tl{list-style:none; padding:0; margin:1.6rem auto; max-width:520px; border-left:1px solid var(--line)}
+.tl li{padding:0 0 1.6rem 1.6rem; position:relative}
+.tl li::before{content:""; position:absolute; left:-5px; top:.6rem; width:9px; height:9px; border-radius:50%; background:var(--ink)}
+.tl b{display:block; font-family:var(--serif); font-size:1.45rem; font-weight:500}
+.maplink{display:block; width:fit-content; margin:1.4rem auto 0; letter-spacing:.2em; text-transform:uppercase; font-size:.82rem; padding:.75rem 1.8rem; color:var(--ink); border:1px solid var(--ink); border-radius:999px; text-decoration:none; transition:background .3s,color .3s}
+.maplink:hover{background:var(--ink); color:var(--paper)}
+.gal{display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:.8rem; margin-top:1.6rem}
+.gal figure{margin:0; aspect-ratio:3/4; border-radius:6px; overflow:hidden; background:linear-gradient(160deg,var(--mint),var(--peach)); display:grid; place-items:center; color:var(--soft); font-style:italic; font-size:.9rem}
+.gal img{width:100%; height:100%; object-fit:cover; cursor:zoom-in; transition:transform .6s}
+.gal img:hover{transform:scale(1.04)}
+.lb{position:fixed; inset:0; z-index:40; background:rgba(20,18,16,.88); display:none; place-items:center; padding:1rem; cursor:zoom-out}
+.lb.on{display:grid}
+.lb img{max-width:100%; max-height:100%; border-radius:4px}
+.music{position:fixed; right:1rem; bottom:1rem; z-index:30; width:48px; height:48px; border-radius:50%; border:1px solid var(--ink); background:var(--paper); color:var(--ink); font-size:1.3rem; cursor:pointer; transition:background .3s,color .3s}
+.music[aria-pressed=true]{background:var(--ink); color:var(--paper)}
+
+/* ---------- personal greeting, thank-you, calendar button, phone links ---------- */
+[hidden]{display:none!important}
+.greet{font-family:var(--serif); font-style:italic; font-size:clamp(1.5rem,5vw,2rem); text-align:center; margin-bottom:.6rem}
+button.maplink{font:inherit; font-size:.82rem; background:transparent; cursor:pointer; margin-top:.8rem}
+.thanks{max-width:480px; margin:1.8rem auto 0; text-align:center}
+.thanks h3{font-family:var(--serif); font-weight:400; font-size:2.4rem; margin:0 0 .4rem}
+.contacts a{color:inherit; text-underline-offset:3px}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1; transform:none; transition:none}
+  body{animation:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <button data-go="home" class="active">Home</button>
+  <button data-go="story">Our story</button>
+  <button data-go="details">Details</button>
+  <button data-go="schedule">Schedule</button>
+  <button data-go="journey">Getting there</button>
+  <button data-go="gallery">Gallery</button>
+  <button data-go="reminders">Reminders</button>
+  <button data-go="rsvp">RSVP</button>
+</nav>
+
+<section id="home">
+  <div class="wrap reveal">
+    <div class="mono">S&amp;C</div>
+    <h1 class="names-script"><span>Stefano</span><span class="plus">+</span><span>Coleen</span></h1>
+    <p class="tag">A love as endless as the sea</p>
+    <p class="names-caps">STEFANO &amp; COLEEN</p>
+    <p class="greet" id="greet" hidden></p>
+    <p class="center"><em>we invite you to celebrate our wedding</em></p>
+    <span class="date">MAY 20, 2027</span>
+    <p class="center" style="letter-spacing:.2em;margin-top:.5rem">AT 4:30PM</p>
+    <p class="venue center">Santa Fe Beach Club,<br>Bantayan Island, Cebu</p>
+    <div class="count" id="count" aria-label="Countdown to the wedding">
+      <div><b id="cd-d">0</b><span>days</span></div>
+      <div><b id="cd-h">0</b><span>hours</span></div>
+      <div><b id="cd-m">0</b><span>mins</span></div>
+      <div><b id="cd-s">0</b><span>secs</span></div>
+    </div>
+    <button class="hero-btn" data-go="story">Read our story</button>
+  </div>
+</section>
+
+<section id="story">
+  <div class="wrap reveal">
+    <h2>Our story</h2>
+    <div class="rule">✦</div>
+    <p class="lead">A love as endless as the sea. Here is how our story unfolded. <em>(Replace the text below with your own words.)</em></p>
+    <ul class="tl">
+      <li><b>How we met</b>Write the story of your first meeting here.</li>
+      <li><b>The proposal</b>Write about the moment Stefano asked, and Coleen said yes.</li>
+      <li><b>Forever begins</b>May 20, 2027, at Santa Fe Beach Club, Bantayan Island.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="details">
+  <div class="wrap reveal">
+    <h2 style="font-family:var(--script);text-transform:none;font-size:clamp(4rem,14vw,7rem);letter-spacing:0">Details</h2>
+    <h2 style="margin-top:1rem">Attire</h2>
+    <div class="rule">✦</div>
+    <p class="lead">We kindly request our guests to wear formal and elegant attire for our special day.</p>
+
+    <h3 class="sub">Ladies</h3>
+    <div class="palette">
+      <div class="swatch"><i style="--c:#e4a9bd"></i>Dusty Pink</div>
+      <div class="swatch"><i style="--c:#f0b48a"></i>Soft Peach</div>
+      <div class="swatch"><i style="--c:#ecd98e"></i>Butter Yellow</div>
+      <div class="swatch"><i style="--c:#a8d3b8"></i>Pale Mint Green</div>
+      <div class="swatch"><i style="--c:#a9c9e3"></i>Powder Blue</div>
+      <div class="swatch"><i style="--c:#b9a4d8"></i>Soft Lavender</div>
+    </div>
+    <p>Long, elegant dresses in soft pastel shades. We encourage simple silhouettes and minimal prints.</p>
+
+    <h3 class="sub">Gentlemen</h3>
+    <div class="palette">
+      <div class="swatch"><i style="--c:#dcc3a8"></i>Nude Beige</div>
+      <div class="swatch"><i style="--c:#fbfaf7"></i>White</div>
+    </div>
+    <p>White tops paired with tailored trousers in nude, beige, or sand tones.</p>
+    <p class="note">To preserve the elegant atmosphere of our celebration, we kindly ask everyone to refrain from wearing casual attire, including T-shirts, shorts and denim.</p>
+
+    <h2 style="margin-top:4rem">Where to stay</h2>
+    <div class="rule">✦</div>
+    <p class="lead">For our guests travelling to Bantayan Island, we have listed a few recommended accommodations around Santa Fe for your convenience.</p>
+    <ul class="stay">
+      <li>Sorana Island Villas</li>
+      <li>Amihan Beach Cabanas</li>
+      <li>Kota Beach Resort</li>
+      <li>Anaya Beach Resort</li>
+      <li>Anika Island Resort</li>
+    </ul>
+    <p class="lead">Kindly note that we do not recommend booking accommodations at our wedding venue. Guests are encouraged to arrange their stay at nearby resorts or accommodations.</p>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="wrap reveal">
+    <h2>The celebration</h2>
+    <div class="rule">✦</div>
+    <p class="lead"><strong>Thursday, May 20, 2027</strong><br>Santa Fe Beach Club, Bantayan Island, Cebu</p>
+    <ul class="tl">
+      <li><b>4:30 PM</b>Our celebration begins</li>
+      <li><b>Ceremony and reception</b>Schedules to follow</li>
+    </ul>
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Santa+Fe+Beach+Club+Bantayan+Island+Cebu" target="_blank" rel="noopener">Open in Google Maps</a>
+    <button class="maplink" id="cal" type="button">Add to calendar</button>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="wrap reveal">
+    <h2>How to get to Bantayan Island</h2>
+    <div class="rule">✦</div>
+    <div class="steps">
+      <div class="step"><div>Take a flight to Mactan-Cebu International Airport.<br>Take a taxi or Grab to Cebu North Bus Terminal.</div><div class="ico">✈️</div><div class="time">Approximately<br>1 hour – 1.5 hours</div></div>
+      <div class="step"><div>Take a Ceres Liner bus bound for Hagnaya Port.<br>Alternatively, arrange a private van rental for a more convenient journey.</div><div class="ico">🚌</div><div class="time">Approximately<br>3 hours – 4 hours</div></div>
+      <div class="step"><div>Take a ferry bound for Santa Fe, Bantayan Island.</div><div class="ico">⛴️</div><div class="time">Approximately<br>1.5 hours – 2 hours</div></div>
+      <div class="step"><div>Take a local tricycle or arrange a resort transfer.</div><div class="ico">🛺</div><div class="time">10–20 minutes, depending on your chosen accommodation</div></div>
+    </div>
+    <div class="venue-box">
+      <h3>VENUE</h3>
+      <p>Take a local tricycle to Santa Fe Beach Club, Bantayan Island, Cebu.</p>
+    </div>
+    <p class="closing">Your presence will make our special day even more meaningful.<br>We look forward in celebrating our beautiful day with you.</p>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap reveal">
+    <h2>Gallery</h2>
+    <div class="rule">✦</div>
+    <p class="lead">A few moments from our journey together.</p>
+    <div class="gal" id="gal"></div>
+  </div>
+</section>
+
+<section id="reminders">
+  <div class="wrap reveal">
+    <h2 class="script-title">Gentle Reminders</h2>
+    <div class="rem">
+      <h2>Adults only event</h2>
+      <p>To keep our celebration intimate and allow all guests to relax and enjoy themselves, we have chosen to make our special day <strong>adults only.</strong> We truly appreciate your understanding and support.</p>
+    </div>
+    <div class="rem">
+      <h2>Plus-ones</h2>
+      <p>Due to limited venue capacity, we can only accommodate the guests formally listed on your invitation. Thank you for celebrating with us.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rsvp">
+  <div class="card">
+    <div class="frame reveal">
+      <h2>RSVP</h2>
+      <p>We reserved <strong>(<span id="seats">2</span>)</strong> seats in your honor.</p>
+      <p class="deadline">The courtesy of a response is required no later than January 15, 2027.</p>
+
+      <form name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="rsvp-form">
+        <input type="hidden" name="form-name" value="rsvp">
+        <p hidden><label>Leave empty <input name="bot-field"></label></p>
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+        <fieldset>
+          <legend>Will you join us?</legend>
+          <label class="opt"><input type="radio" name="response" value="Graciously Accept" required> Graciously Accept</label>
+          <label class="opt"><input type="radio" name="response" value="Respectfully Decline"> Respectfully Decline</label>
+        </fieldset>
+        <button class="send" type="submit">Send my reply</button>
+        <p class="msg" id="msg" role="status"></p>
+      </form>
+
+      <div class="thanks" id="thanks" hidden>
+        <h3>Thank you!</h3>
+        <p id="thanks-msg"></p>
+      </div>
+
+      <div class="contacts">
+        <p>You may also confirm by reaching out to us through our phone numbers or Facebook accounts.</p>
+        <p><a href="tel:+639480636622">(+63) 948 063 6622</a> – Groom</p>
+        <p><a href="tel:+639277755812">(+63) 927 775 5812</a> – Bride</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lb" id="lb"><img alt=""></div>
+<button class="music" id="music" aria-pressed="false" aria-label="Play background music" title="Play music">♪</button>
+
+<footer>S&amp;C</footer>
+
+<script>
+  // ---------- buttons scroll smoothly to their section ----------
+  document.querySelectorAll('[data-go]').forEach(b => {
+    b.addEventListener('click', () => {
+      document.getElementById(b.dataset.go).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // ---------- highlight the current section's button ----------
+  const navBtns = [...document.querySelectorAll('.nav button')];
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navBtns.forEach(b => b.classList.toggle('active', b.dataset.go === e.target.id));
+        const act = navBtns.find(b => b.classList.contains('active'));
+        if (act) act.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('section').forEach(s => spy.observe(s));
+
+  // ---------- soft fade-in as each section arrives ----------
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---------- countdown to May 20, 2027, 4:30 PM (Philippine time) ----------
+  const target = new Date('2027-05-20T16:30:00+08:00');
+  function tickCount() {
+    let s = Math.max(0, Math.floor((target - new Date()) / 1000));
+    const v = { d: Math.floor(s / 86400), h: Math.floor(s % 86400 / 3600), m: Math.floor(s % 3600 / 60), s: s % 60 };
+    for (const k in v) document.getElementById('cd-' + k).textContent = v[k];
+  }
+  tickCount();
+  setInterval(tickCount, 1000);
+
+  // ---------- gallery: add your photo paths here, e.g. '../image/photo1.jpg' ----------
+  const PHOTOS = [];
+  const gal = document.getElementById('gal');
+  const lb = document.getElementById('lb');
+  const slots = PHOTOS.length ? PHOTOS : Array(6).fill(null);
+  slots.forEach(src => {
+    const f = document.createElement('figure');
+    if (src) {
+      const img = new Image();
+      img.src = src; img.alt = 'Stefano and Coleen'; img.loading = 'lazy';
+      img.addEventListener('click', () => { lb.querySelector('img').src = src; lb.classList.add('on'); });
+      f.appendChild(img);
+    } else {
+      f.textContent = 'Photo coming soon';
+    }
+    gal.appendChild(f);
+  });
+  lb.addEventListener('click', () => lb.classList.remove('on'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
+
+  // ---------- background music ----------
+const audio = new Audio('../music/La Vie En Rose Instrumental Music.mp3');
+audio.loop = true;
+audio.volume = 0.5;
+
+const music = document.getElementById('music');
+
+// Automatically attempt to play when website opens
+window.addEventListener('load', () => {
+    audio.play().then(() => {
+        music.setAttribute('aria-pressed', 'true');
+        music.title = 'Pause music';
+    }).catch(() => {
+        // Browser blocked autoplay
+        music.setAttribute('aria-pressed', 'false');
+        music.title = 'Click to play music';
+    });
+});
+
+// Music button toggle
+music.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play().then(() => {
+            music.setAttribute('aria-pressed', 'true');
+            music.title = 'Pause music';
+        }).catch(() => {
+            music.title = 'Unable to play music';
+        });
+    } else {
+        audio.pause();
+        music.setAttribute('aria-pressed', 'false');
+        music.title = 'Play music';
+    }
+});
+
+  // ---------- personal link: ?guest=Maria+Santos&seats=2 ----------
+  const qs = new URLSearchParams(location.search);
+  const guest = (qs.get('guest') || '').trim().slice(0, 80);
+  const seats = Math.min(Math.max(parseInt(qs.get('seats'), 10) || 2, 1), 10);
+  if (guest) {
+    const g = document.getElementById('greet');
+    g.textContent = 'Dear ' + guest + ',';
+    g.hidden = false;
+    document.getElementById('name').value = guest;
+  }
+  document.getElementById('seats').textContent = seats;
+
+  // ---------- add to calendar (.ics file) ----------
+  document.getElementById('cal').addEventListener('click', () => {
+    const ics = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Stefano and Coleen//Wedding//EN',
+      'BEGIN:VEVENT', 'UID:wedding-20270520@stefano-coleen', 'DTSTAMP:20261120T000000Z',
+      'DTSTART:20270520T083000Z', 'DTEND:20270520T113000Z',   // 4:30 PM Philippine time, about 3 hours
+      'SUMMARY:Stefano & Coleen’s Wedding',
+      'LOCATION:Santa Fe Beach Club\\, Bantayan Island\\, Cebu',
+      'DESCRIPTION:Ceremony and reception schedules to follow.',
+      'END:VEVENT', 'END:VCALENDAR'
+    ].join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+    a.download = 'stefano-coleen-wedding.ics';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  // ---------- RSVP (Netlify Forms) ----------
+  const form = document.getElementById('rsvp-form');
+  const msg = document.getElementById('msg');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    msg.textContent = 'Sending…';
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      });
+      if (!res.ok) throw new Error();
+      const accepted = form.elements.response.value === 'Graciously Accept';
+      form.reset();
+      form.hidden = true;
+      document.getElementById('thanks-msg').textContent = accepted
+        ? 'Your reply has been received. We can’t wait to celebrate with you on May 20, 2027.'
+        : 'Your reply has been received. We will miss you, and thank you for letting us know.';
+      document.getElementById('thanks').hidden = false;
+    } catch (err) {
+      msg.textContent = 'Your reply did not send. Please text us at the numbers below.';
+    }
+  });
+</script>
+</body>
+</html>
