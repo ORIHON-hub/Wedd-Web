@@ -83,13 +83,12 @@ nav a[aria-current="page"]{border-bottom:1px solid currentColor}
 
 /* ---------- invitation ---------- */
 .invite{text-align:center}
-.env{position:relative;width:min(26rem,86%);aspect-ratio:4/3;margin:3rem auto 4rem}
-.env-back{position:absolute;inset:0;background:var(--beige);clip-path:polygon(0 12%,50% 0,100% 12%,100% 100%,0 100%)}
-.env-card{position:absolute;inset:-12% 9% 30%;background:#f4eee2;color:#3a372f;padding:1.6rem 1rem;box-shadow:0 8px 24px rgba(60,45,30,.14);font:1.2rem/1.4 var(--serif)}
-.env-card b{display:block;font-weight:400;letter-spacing:.08em;margin-bottom:.4rem}
-.env-front{position:absolute;inset:0;display:grid;place-items:end center;padding-bottom:1.2rem;background:linear-gradient(160deg,#e0cfb6,#c9b08f);clip-path:polygon(0 38%,50% 72%,100% 38%,100% 100%,0 100%);color:#fff;font:2.6rem var(--script)}
-.polaroid{position:absolute;right:-12%;bottom:-14%;width:42%;padding:.5rem .5rem 1.6rem;background:#fff;box-shadow:0 10px 26px rgba(0,0,0,.18);transform:rotate(5deg)}
+.env{position:relative;width:min(46rem,92%);margin:3rem auto 4rem}
+.env-img{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 24px rgba(60,45,30,.18))}
+.env-logo{position:absolute;z-index:1;left:50%;bottom:9%;width:9%;height:auto;transform:translateX(-50%);filter:brightness(0) invert(1);opacity:.95;pointer-events:none}
+.polaroid{position:absolute;z-index:2;right:-12%;bottom:-14%;width:36%;padding:.5rem .5rem 1.6rem;background:#fff;box-shadow:0 10px 26px rgba(0,0,0,.18);transform:rotate(5deg)}
 .polaroid .photo{aspect-ratio:3/4;filter:grayscale(1)}
+
 
 /* ---------- countdown ---------- */
 .count{padding:5rem 1rem;text-align:center;background:linear-gradient(rgba(239,230,216,.85),rgba(239,230,216,.85)),radial-gradient(ellipse at 30% 20%,#fff,transparent 60%),radial-gradient(ellipse at 80% 70%,#fff,transparent 55%) var(--beige-light)}
@@ -178,6 +177,14 @@ form .btn{width:100%;margin-top:1.6rem}
 .contact a{color:inherit}
 footer{padding:4rem 1rem;text-align:center;font:2.6rem var(--script);color:var(--soft)}
 footer .btn{display:block;margin:1.5rem auto 0}
+.footer-logo{display:block;width:clamp(5rem,14vw,7.5rem);height:auto;margin:0 auto;filter:brightness(0)}
+
+/* ---------- music toggle ---------- */
+.music-btn{position:fixed;right:calc(1rem + env(safe-area-inset-right,0px));bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:30;width:2.8rem;height:2.8rem;display:grid;place-items:center;border:1px solid var(--ink);border-radius:50%;background:var(--bg);color:var(--ink);cursor:pointer;box-shadow:0 4px 14px rgba(60,45,30,.18);transition:background .2s,color .2s}
+.music-btn:hover,.music-btn:focus-visible{background:var(--ink);color:var(--bg);outline:none}
+.music-btn .i-pause{display:none}
+.music-btn.playing .i-play{display:none}
+.music-btn.playing .i-pause{display:block}
 
 /* ---------- mobile ---------- */
 @media (max-width:760px){
@@ -206,7 +213,6 @@ footer .btn{display:block;margin:1.5rem auto 0}
 
 <nav aria-label="Sections">
   <a href="#home">HOME</a>
-  
   <a href="#details">DETAILS</a>
   <a href="#photos">PHOTOS</a>
   <a href="#rsvp">RSVP</a>
@@ -240,9 +246,8 @@ footer .btn{display:block;margin:1.5rem auto 0}
   <h2>A new <em>chapter</em></h2>
   <p>As we begin this beautiful journey together, we would be honored to have you by our side as we celebrate one of the most meaningful days of our lives.</p>
   <div class="env">
-    <div class="env-back"></div>
-    <div class="env-card"><b>20 May 2027</b>Santa Fe Beach Club,<br>Bantayan Island, Cebu</div>
-    <div class="env-front">S&amp;C</div>
+    <img class="env-img" src="../image/Elegant%20Blue-Gray%20Wedding%20Invitation%20Envelope.png" alt="Wedding invitation envelope for Stefano and Coleen">
+    <img class="env-logo" src="../image/S%26C%20logo.png" alt="S&amp;C monogram">
     <div class="polaroid"><div class="photo"></div></div>
   </div>
   <a class="btn" href="#details">VIEW DETAILS</a>
@@ -399,43 +404,45 @@ footer .btn{display:block;margin:1.5rem auto 0}
 </div>
 </main>
 
+<!-- Background music: path is relative to this file (html/ folder). Song lives in the music/ folder. -->
+<audio id="bg-music" loop preload="auto">
+  <source src="../music/La%20Vie%20En%20Rose%20Instrumental%20Music.mp3" type="audio/mpeg">
+</audio>
+<button class="music-btn" id="music-btn" type="button" aria-label="Play music" aria-pressed="false">
+  <svg class="i-play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+  <svg class="i-pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>
+</button>
+
 <div class="lb" id="lb"><img alt=""></div>
 <footer>
-  
-  <div>S&amp;C</div>
+  <img class="footer-logo" src="../image/S%26C%20logo.png" alt="S&amp;C monogram">
   <button class="btn sm" id="to-top" type="button">BACK TO TOP</button>
 </footer>
 
 <script>
 (() => {
+  const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   // Hero video: switch off the sand fallback once the video can play.
   const hero = document.getElementById("top");
   const video = document.getElementById("hero-video");
-const showHeroVideo = () => {
+  const showHeroVideo = () => {
     hero.classList.add("has-video");
+    if (reduceMotion()) video.pause();
+  };
+  video.addEventListener("canplay", showHeroVideo);
+  video.addEventListener("error", () => {
+    console.error("Hero background video failed to load:", video.error);
+  });
+  if (video.readyState >= 3) showHeroVideo();
 
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        video.pause();
-    }
-    };
-
-    video.addEventListener("canplay", showHeroVideo);
-
-    video.addEventListener("error", () => {
-        console.error("Hero background video failed to load:", video.error);
-    });
-
-    if (video.readyState >= 3) {
-        showHeroVideo();
-    }
-
-    // Countdown video: same idea as the hero.
-    const countSection = document.querySelector(".count");
-    const countVideo = document.getElementById("count-video");
-    countVideo.addEventListener("canplay", () => {
-        countSection.classList.add("has-video");
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) countVideo.pause();
-    });
+  // Countdown video: same idea as the hero.
+  const countSection = document.querySelector(".count");
+  const countVideo = document.getElementById("count-video");
+  countVideo.addEventListener("canplay", () => {
+    countSection.classList.add("has-video");
+    if (reduceMotion()) countVideo.pause();
+  });
 
   // Countdown to May 20, 2027, 4:30 PM Philippine time.
   const target = new Date("2027-05-20T16:30:00+08:00").getTime();
@@ -459,7 +466,7 @@ const showHeroVideo = () => {
     pages.forEach(p => p.classList.toggle("on", p === page));
     document.body.classList.toggle("inner", name !== "home");
     navLinks.forEach(a => a.getAttribute("href") === "#" + name ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
-    if (name === "home" && !matchMedia("(prefers-reduced-motion: reduce)").matches) [video, countVideo].forEach(v => v.play().catch(() => {}));
+    if (name === "home" && !reduceMotion()) [video, countVideo].forEach(v => v.play().catch(() => {}));
     scrollTo({ top: 0, behavior: "instant" });
   };
   addEventListener("hashchange", route);
@@ -483,9 +490,38 @@ const showHeroVideo = () => {
   });
   lb.onclick = () => lb.classList.remove("on");
 
+  // Background music: try to autoplay; if the browser blocks it, start on the first interaction.
+  const music = document.getElementById("bg-music");
+  const musicBtn = document.getElementById("music-btn");
+  music.volume = 0.6;
+
+  const syncMusicUI = () => {
+    const playing = !music.paused;
+    musicBtn.classList.toggle("playing", playing);
+    musicBtn.setAttribute("aria-pressed", playing);
+    musicBtn.setAttribute("aria-label", playing ? "Pause music" : "Play music");
+  };
+  music.addEventListener("play", syncMusicUI);
+  music.addEventListener("pause", syncMusicUI);
+
+  musicBtn.addEventListener("click", () => {
+    music.paused ? music.play().catch(() => {}) : music.pause();
+  });
+
+  music.play().catch(() => {
+    const events = ["pointerdown", "keydown", "touchend"];
+    const startOnInteraction = e => {
+      if (e.target.closest && e.target.closest("#music-btn")) return; // let the button handle itself
+      events.forEach(ev => removeEventListener(ev, startOnInteraction));
+      music.play().catch(() => {});
+    };
+    events.forEach(ev => addEventListener(ev, startOnInteraction));
+  });
+  syncMusicUI();
+
   // Back to top button in the footer.
   document.getElementById("to-top").addEventListener("click", () => {
-    scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    scrollTo({ top: 0, behavior: reduceMotion() ? "auto" : "smooth" });
   });
 
   // RSVP: shows the thank-you message only. To collect replies, send the form
