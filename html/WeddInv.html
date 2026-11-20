@@ -411,18 +411,31 @@ footer .btn{display:block;margin:1.5rem auto 0}
   // Hero video: switch off the sand fallback once the video can play.
   const hero = document.getElementById("top");
   const video = document.getElementById("hero-video");
-  video.addEventListener("canplay", () => {
+const showHeroVideo = () => {
     hero.classList.add("has-video");
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) video.pause();
-  });
 
-  // Countdown video: same idea as the hero.
-  const countSection = document.querySelector(".count");
-  const countVideo = document.getElementById("count-video");
-  countVideo.addEventListener("canplay", () => {
-    countSection.classList.add("has-video");
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) countVideo.pause();
-  });
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        video.pause();
+    }
+    };
+
+    video.addEventListener("canplay", showHeroVideo);
+
+    video.addEventListener("error", () => {
+        console.error("Hero background video failed to load:", video.error);
+    });
+
+    if (video.readyState >= 3) {
+        showHeroVideo();
+    }
+
+    // Countdown video: same idea as the hero.
+    const countSection = document.querySelector(".count");
+    const countVideo = document.getElementById("count-video");
+    countVideo.addEventListener("canplay", () => {
+        countSection.classList.add("has-video");
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) countVideo.pause();
+    });
 
   // Countdown to May 20, 2027, 4:30 PM Philippine time.
   const target = new Date("2027-05-20T16:30:00+08:00").getTime();
