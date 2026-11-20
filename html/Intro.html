@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My Page</title>
+  <link rel="prefetch" href="WeddInv.html">   <!-- loads the next page in the background so the transition is instant -->
   <style>
     html, body {
       margin: 0;
@@ -87,7 +88,6 @@
       aspect-ratio: 1 / 1;
       transform: translateX(-50%);               /* centers it on the drop point */
       pointer-events: none;                      /* not clickable while falling */
-      transition: scale 0.2s ease;
     }
 
     /* after the drop finishes, the letter can be clicked */
@@ -95,13 +95,21 @@
       pointer-events: auto;
       cursor: pointer;
     }
-
-    /* fade out when leaving the page */
-    body {
-      transition: opacity 0.5s ease;
+    .letter.ready:hover {
+      filter: brightness(1.08);
     }
-    body.leaving {
+
+    /* smooth fade into the next page */
+    .fade {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      background: #fff6e8;                       /* color the screen fades to */
       opacity: 0;
+      pointer-events: none;
+    }
+    .fade.show {
+      opacity: 1;
     }
   </style>
 </head>
@@ -118,6 +126,8 @@
 
   <img class="letter" src="../image/Lframe1.png" alt="Letter">
 
+  <div class="fade"></div>
+
   <script>
     // ---------- background ratio ----------
     const bg = document.querySelector('.bg');
@@ -129,39 +139,168 @@
     if (bg.complete) setRatio();
     bg.addEventListener('load', setRatio);
 
-    // ---------- letter drop ----------
-    const OPEN_PAGE = 'Invitation.html';   // CHANGE THIS to the file the letter should open
-                                           // (same folder as Intro.html; use '../other-folder/file.html' for elsewhere)
-    const DROP_FPS = 6;         // speed of frames 1-13 (13 frames = about 2.2 seconds)
-    const BOB_MS = 450;         // how fast frames 14-15 swap
-    const START_SCALE = 0.3;    // how small the letter is when it starts falling (1 = full size)
-    const BOB_HEIGHT = 4;       // how far the letter floats up and down (% of its own height)
-    const BOB_SPEED = 1600;     // time for one full up and down, in ms
+    // ---------- settings ----------
+    const OPEN_PAGE = 'WeddInv.html';                                   // the next page
+    const OPEN_GIF = '../image/Animated_Love_Letter_Reveal_transparent.gif';
+    const GIF_SCALE = 0.76;         // size of the opening GIF compared to the letter (bigger = larger envelope)
+    const GIF_NUDGE_X = 0;          // fine-tune the GIF's position in pixels (+ moves right, - moves left)
+    const GIF_NUDGE_Y = 0;          // (+ moves down, - moves up)
+    const GIF_FALLBACK_MS = 3000;   // used only if the script can't read the GIF's real length
+    const GIF_EARLY = 1000;         // start the fade this many ms BEFORE the GIF finishes (bigger = earlier)
+    const FADE_MS = 800;            // length of the fade into the next page
+
+    const DROP_FPS = 6;             // speed of frames 1-13 (13 frames = about 2.2 seconds)
+    const BOB_MS = 450;             // how fast frames 14-15 swap
+    const START_SCALE = 0.3;        // how small the letter is when it starts falling (1 = full size)
+    const BOB_HEIGHT = 4;           // how far the letter floats up and down (% of its own height)
+    const BOB_SPEED = 1600;         // time for one full up and down, in ms
 
     const rider = document.querySelector('.rider');
     const letter = document.querySelector('.letter');
+    const fade = document.querySelector('.fade');
+    fade.style.transition = `opacity ${FADE_MS}ms ease`;
 
     const dropFrames = Array.from({ length: 13 }, (_, i) => `../image/Lframe${i + 1}.png`);
     const bobFrames = ['../image/Lframe14.png', '../image/Lframe15.png'];
 
-    // preload every frame so there's no flicker
-    [...dropFrames, ...bobFrames].forEach(src => { new Image().src = src; });
+    // preload every frame and the GIF so nothing flickers or lags
+    [...dropFrames, ...bobFrames, OPEN_GIF].forEach(src => { new Image().src = src; });
+
+    // ---------- find where the envelope sits inside an image ----------
+    // returns the envelope's horizontal center and bottom edge as fractions of the image, plus its shape
+    async function measure(src) {
+      try {
+        const img = new Image();
+        img.src = src;
+        await img.decode();
+        const w = img.naturalWidth, h = img.naturalHeight;
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        const ctx = c.getContext('2d', { willReadFrequently: true });
+        ctx.drawImage(img, 0, 0);
+        const d = ctx.getImageData(0, 0, w, h).data;
+
+        let minX = w, maxX = -1, maxY = -1;
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            if (d[(y * w + x) * 4 + 3] > 128) {       // visible pixel
+              if (x < minX) minX = x;
+              if (x > maxX) maxX = x;
+              if (y > maxY) maxY = y;
+            }
+          }
+        }
+        if (maxX < 0) return null;
+        return { cx: (minX + maxX + 1) / 2 / w, bottom: (maxY + 1) / h, aspect: h / w };
+      } catch (e) {
+        return null;      // for example when opening the file directly from the computer
+      }
+    }
+
+    const measures = {};
+    [...bobFrames, OPEN_GIF].forEach(src => {
+      measure(src).then(m => { measures[src] = m; });
+    });
+
+    // ---------- prepare the GIF: read its length and make it play only once ----------
+    let gifMs = GIF_FALLBACK_MS;
+    let gifSrc = OPEN_GIF;          // replaced by a "play once" copy when it's ready
+
+    async function prepareGif(url) {
+      try {
+        const res = await fetch(url);
+        const buf = new Uint8Array(await res.arrayBuffer());
+
+        // 1) add up every frame's delay to get the real length
+        let ms = 0;
+        for (let i = 0; i < buf.length - 7; i++) {
+          if (buf[i] === 0x21 && buf[i + 1] === 0xF9 && buf[i + 2] === 0x04 && buf[i + 7] === 0x00) {
+            const d = buf[i + 4] | (buf[i + 5] << 8);          // delay in 1/100 s
+            ms += (d <= 1 ? 10 : d) * 10;                      // browsers treat 0-1 as 100 ms
+          }
+        }
+        if (ms >= 200) gifMs = ms;
+
+        // 2) switch off the loop setting so the GIF stops on its last frame
+        const tag = 'NETSCAPE2.0';
+        for (let i = 0; i < buf.length - tag.length; i++) {
+          let match = true;
+          for (let j = 0; j < tag.length; j++) {
+            if (buf[i + j] !== tag.charCodeAt(j)) { match = false; break; }
+          }
+          if (match) { buf[i] = 0x58; break; }                 // renames the loop marker so browsers ignore it
+        }
+        gifSrc = URL.createObjectURL(new Blob([buf], { type: 'image/gif' }));
+      } catch (e) {
+        // if anything fails, the original GIF is used (it will loop)
+      }
+    }
+    prepareGif(OPEN_GIF);
 
     let timer = null;
+    let bobAnim = null;
+    let opened = false;
 
-    // ---------- open the next page ----------
-    function openPage() {
-      document.body.classList.add('leaving');                          // fade out
-      setTimeout(() => { window.location.href = OPEN_PAGE; }, 500);    // then go
+    // ---------- open the letter, then fade to the next page ----------
+    function openLetter() {
+      if (opened) return;
+      opened = true;
+
+      clearInterval(timer);                 // stop swapping frames 14-15
+      if (bobAnim) bobAnim.pause();         // freeze the floating where it is
+
+      // where the letter is on screen right now
+      const rect = letter.getBoundingClientRect();
+      const current = measures[letter.getAttribute('src')];
+      const gif = measures[OPEN_GIF];
+
+      // size of the GIF on screen
+      const gifW = rect.width * GIF_SCALE;
+      const gifH = gifW * (gif ? gif.aspect : 252 / 378);
+
+      // place the GIF so its envelope lines up with the current envelope
+      let left, top;
+      if (current && gif) {
+        const envCenterX = rect.left + current.cx * rect.width;
+        const envBottom = rect.top + current.bottom * rect.height;
+        left = envCenterX - gif.cx * gifW;
+        top = envBottom - gif.bottom * gifH;
+      } else {
+        // fallback when the images can't be measured: center the GIF on the letter
+        left = rect.left + (rect.width - gifW) / 2;
+        top = rect.top + (rect.height - gifH) / 2;
+      }
+
+      // stop the drop/bob animations and switch to plain positioning
+      letter.getAnimations().forEach(a => a.cancel());
+      Object.assign(letter.style, {
+        transform: 'none',
+        translate: 'none',
+        scale: 'none',
+        aspectRatio: 'auto',
+        bottom: 'auto',
+        width: gifW + 'px',
+        height: gifH + 'px',
+        left: (left + GIF_NUDGE_X) + 'px',
+        top: (top + GIF_NUDGE_Y) + 'px'
+      });
+
+      letter.classList.remove('ready');
+      letter.src = gifSrc;                  // plays the opening GIF once and stops on its last frame
+
+      // wait for the GIF to finish, hold the last frame, then fade out
+      const fadeStart = Math.max(0, gifMs - GIF_EARLY);
+      setTimeout(() => fade.classList.add('show'), fadeStart);
+      setTimeout(() => { window.location.href = OPEN_PAGE; }, fadeStart + FADE_MS);
     }
 
     function makeClickable() {
       letter.classList.add('ready');
       letter.setAttribute('role', 'link');
       letter.tabIndex = 0;                                             // reachable with the keyboard
-      letter.addEventListener('click', openPage);
+      letter.addEventListener('click', openLetter);
       letter.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') openPage();
+        if (e.key === 'Enter' || e.key === ' ') openLetter();
       });
     }
 
@@ -176,7 +315,7 @@
       }, BOB_MS);
 
       // smooth float up and down
-      letter.animate(
+      bobAnim = letter.animate(
         [
           { translate: '0 0' },
           { translate: `0 -${BOB_HEIGHT}%` }
@@ -215,7 +354,7 @@
           letter.src = dropFrames[i];
         } else {
           clearInterval(timer);
-          startBobbing();       // drop finished, switch to bobbing
+          startBobbing();         // drop finished, switch to bobbing
         }
       }, 1000 / DROP_FPS);
     }
@@ -238,6 +377,11 @@
       if (!dropped) requestAnimationFrame(tick);   // stop checking after the drop
     }
     requestAnimationFrame(tick);
+
+    // if the visitor presses Back, make sure the page isn't stuck on the fade color
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) fade.classList.remove('show');
+    });
   </script>
 </body>
 </html>
