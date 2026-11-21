@@ -144,6 +144,8 @@ nav a[aria-current="page"]{border-bottom:1px solid currentColor}
 .ev p{margin:0;font-size:.92rem}
 .ev:nth-child(odd) p{margin-left:auto;text-align:right}
 .ev:nth-child(even) p{margin-left:0;text-align:left}
+.ev .veh{position:absolute;top:-.3rem;left:100%;margin-left:2.5rem;width:clamp(5.5rem,15vw,8rem);height:auto;pointer-events:none}
+.ev:nth-child(even) .veh{left:auto;right:100%;margin-left:0;margin-right:2.5rem}
 
 /* ---------- dress code ---------- */
 .dress{text-align:center;background:var(--paper)}
@@ -214,6 +216,7 @@ footer .btn{display:block;margin:1.5rem auto 0}
   .ev::after,.ev:nth-child(even)::after{left:2px;right:auto}
   .ev:nth-child(odd) p{margin-left:0;text-align:left}
   .polaroid{right:-4%}
+  .ev .veh,.ev:nth-child(even) .veh{position:static;display:block;width:5.5rem;margin:0 0 .6rem}
 }
 /* ---------- hero on phones and portrait tablets: names stack, text wraps ---------- */
 @media (max-width:900px){
@@ -377,10 +380,11 @@ footer .btn{display:block;margin:1.5rem auto 0}
 
     <h2 style="margin-top:4rem">Getting <em>there</em></h2>
     <ol class="tl">
-      <li class="ev"><time>1–1.5 hrs</time><h3>FLY TO CEBU</h3><p>Fly to Mactan-Cebu International Airport, then take a taxi or Grab to Cebu North Bus Terminal.</p></li>
-      <li class="ev"><time>3–4 hrs</time><h3>BUS TO HAGNAYA</h3><p>Ride a Ceres Liner bus to Hagnaya Port, or arrange a private van.</p></li>
-      <li class="ev"><time>1.5–2 hrs</time><h3>FERRY TO SANTA FE</h3><p>Take a ferry bound for Santa Fe, Bantayan Island.</p></li>
-      <li class="ev"><time>10–20 min</time><h3>TRICYCLE</h3><p>Take a local tricycle or resort transfer to Santa Fe Beach Club.</p></li>
+      <li class="ev"><img class="veh" src="../image/airplane.png" alt="" aria-hidden="true"><time>1–1.5 hrs</time><h3>FLY TO CEBU</h3><p>Fly to Mactan-Cebu International Airport, then take a taxi or Grab to Cebu North Bus Terminal.</p></li>
+      <li class="ev"><img class="veh" src="../image/bus.png" alt="" aria-hidden="true"><time>3–4 hrs</time><h3>BUS TO HAGNAYA</h3><p>Ride a Ceres Liner bus to Hagnaya Port, or arrange a private van.</p></li>
+      <li class="ev"><img class="veh" src="../image/ferry.png" alt="" aria-hidden="true"><time>1.5–2 hrs</time><h3>FERRY TO SANTA FE</h3><p>Take a ferry bound for Santa Fe, Bantayan Island.</p></li>
+      <li class="ev"><img class="veh" src="../image/tricycle_1.png" alt="" aria-hidden="true"><time>10–20 min</time><h3>TRICYCLE</h3><p>Take a local tricycle or arrange a resort transfer.</p></li>
+      <li class="ev"><img class="veh" src="../image/tricycle_2.png" alt="" aria-hidden="true" style="transform:scaleX(-1)"><time>Arrival</time><h3>THE VENUE</h3><p>Take a local tricycle to Santa Fe Beach Club, Bantayan Island, Cebu.</p></li>
     </ol>
     <p>Your presence will make our special day even more meaningful.</p>
   </div>
